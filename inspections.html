@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" href="assets/icons/logo-square.png" />
+    <link rel="apple-touch-icon" href="assets/icons/logo-square.png" />
+    <title>Aircraft Inspection Services | British Flight Center</title>
+    <meta
+      name="description"
+      content="Initial and pre-buy aircraft inspection support with expert advisory for private and business jet acquisitions."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="assets/css/tokens.css" />
+    <link rel="stylesheet" href="assets/css/base.css" />
+    <link rel="stylesheet" href="assets/css/components.css" />
+    <link rel="stylesheet" href="assets/css/animations.css" />
+    <script src="assets/js/site.js" defer></script>
+  </head>
+  <body>
+    <header class="site-header load-in">
+      <div class="container nav-wrap">
+        <a class="brand" href="index.html" aria-label="British Flight Center home">
+          <img class="brand-logo" src="assets/icons/logo-long.png" alt="British Flight Center" />
+        </a>
+        <button class="nav-toggle" type="button" data-nav-toggle aria-expanded="false" aria-controls="main-menu">
+          Menu
+        </button>
+        <ul class="nav-menu" id="main-menu" data-nav-menu>
+          <li><a class="nav-link" href="fleet.html">Fleet</a></li>
+          <li><a class="nav-link" href="index.html#destinations">Destinations</a></li>
+          <li><a class="nav-link" href="index.html#about">About</a></li>
+          <li><a class="nav-link" href="contact.html">Contact</a></li>
+          <li><a class="btn btn-primary btn-shimmer" href="booking.html">Request Quote</a></li>
+        </ul>
+      </div>
+    </header>
+
+    <main>
+      <section class="page-header">
+        <div class="container reveal">
+          <span class="kicker">Aircraft Advisory</span>
+          <h1 class="mask-reveal">Initial Inspection &amp; Pre-Buy Inspection</h1>
+          <p>
+            If you plan to acquire a jet, our technical advisory team can perform structured initial inspection and
+            pre-buy inspection support before you commit.
+          </p>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container grid" style="gap: 2rem">
+          <article class="surface reveal" style="padding: 1.4rem">
+            <span class="kicker">Phase 01</span>
+            <h2 class="section-title" style="font-size: 2rem">Initial Inspection</h2>
+            <p>
+              Early-stage technical screening to quickly identify red flags before deeper due diligence costs are
+              committed.
+            </p>
+            <ul class="metric-list">
+              <li><span>Records Snapshot</span><strong>Airframe / engine log review</strong></li>
+              <li><span>Configuration Check</span><strong>Cabin + avionics status</strong></li>
+              <li><span>Maintenance Signals</span><strong>Upcoming major events</strong></li>
+              <li><span>Outcome</span><strong>Go / no-go advisory note</strong></li>
+            </ul>
+          </article>
+
+          <article class="surface reveal" style="padding: 1.4rem">
+            <span class="kicker">Phase 02</span>
+            <h2 class="section-title" style="font-size: 2rem">Pre-Buy &amp; Pre-Acquisition Inspection</h2>
+            <p>
+              Deep technical and commercial advisory before purchase, including independent review support with your
+              legal and transaction team.
+            </p>
+            <ul class="metric-list">
+              <li><span>Physical Survey</span><strong>Airframe, engines, systems, interior</strong></li>
+              <li><span>Compliance Review</span><strong>AD/SB, maintenance status, traceability</strong></li>
+              <li><span>Cost Forecast</span><strong>Near-term maintenance exposure</strong></li>
+              <li><span>Outcome</span><strong>Negotiation-ready technical report</strong></li>
+            </ul>
+          </article>
+
+          <article class="surface reveal" style="padding: 1.4rem">
+            <span class="kicker">Covered Aircraft</span>
+            <h2 class="section-title" style="font-size: 2rem">Inspection List</h2>
+            <p>
+              We currently support technical advisory and pre-buy inspection workflows for the following aircraft
+              types:
+            </p>
+            <ul class="metric-list">
+              <li><span>Airbus</span><strong>A340-600</strong></li>
+              <li><span>Airbus</span><strong>A310</strong></li>
+              <li><span>Airbus</span><strong>A300</strong></li>
+              <li><span>Boeing</span><strong>747-400</strong></li>
+              <li><span>BAe</span><strong>146-300</strong></li>
+              <li><span>Cessna CitationJet</span><strong>CJ2</strong></li>
+              <li><span>Hawker</span><strong>400XP</strong></li>
+            </ul>
+            <p style="margin-top: 1rem">
+              <a class="btn btn-primary btn-shimmer" href="contact.html">Request Expert Inspection Advice</a>
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section class="cta-band">
+        <div class="container grid grid-2 reveal" style="align-items: center">
+          <div>
+            <h2 class="section-title" style="margin-bottom: 0.8rem">Need Independent Buying Support?</h2>
+            <p>Send aircraft details and transaction timeline. We will propose an inspection scope and advisory plan.</p>
+          </div>
+          <div style="display: flex; justify-content: flex-end">
+            <a class="btn btn-primary btn-shimmer" href="contact.html">Start Inspection Request</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-row">
+        <p>&copy; <span id="year">2026</span> British Flight Center. All rights reserved.</p>
+        <p>Inspection advisory is provided as expert guidance alongside buyer due diligence.</p>
+        <img class="footer-mark" src="assets/icons/logo-square.png" alt="British Flight Center mark" loading="lazy" />
+      </div>
+    </footer>
+
+    <script>
+      document.getElementById("year").textContent = String(new Date().getFullYear());
+    </script>
+  </body>
+</html>

@@ -496,6 +496,16 @@
   color: #2c2c2c;
 }
 
+.services-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+@media (max-width: 760px) {
+  .services-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
 .icon-line {
   width: 44px;
   height: 44px;
@@ -573,6 +583,49 @@
   aspect-ratio: 16/9;
   border-radius: var(--radius-md);
   object-fit: cover;
+}
+
+.fleet-stack {
+  display: grid;
+  gap: 1.2rem;
+}
+
+.fleet-aircraft-card {
+  padding: 1.15rem;
+  display: grid;
+  gap: 1rem;
+}
+
+.fleet-aircraft-media {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem;
+}
+
+.fleet-aircraft-copy .metric-list {
+  margin-top: 0.8rem;
+}
+
+.fleet-mini-title {
+  margin: 1rem 0 0.45rem;
+  font-size: 1.1rem;
+}
+
+.fleet-bullets {
+  margin: 0;
+  padding-left: 1.1rem;
+  display: grid;
+  gap: 0.35rem;
+  color: var(--color-text-muted);
+}
+
+.fleet-bullets li {
+  color: inherit;
+}
+
+.fleet-bullets-dark,
+.fleet-bullets-dark li {
+  color: #2b2b2b;
 }
 
 .metric-list {
@@ -1086,6 +1139,10 @@
   .footer-row {
     flex-direction: column;
     align-items: flex-start;
+  }
+
+  .fleet-aircraft-media {
+    grid-template-columns: 1fr;
   }
 }
 

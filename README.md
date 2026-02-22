@@ -2,7 +2,8 @@
 
 ## Files
 - `index.html` homepage
-- `fleet.html` fleet page
+- `inspections.html` aircraft inspection services page
+- `fleet.html` passenger fleet page (ERJ145 + Hawker 400XP)
 - `contact.html` contact page
 - `assets/css/` tokenized styling and animation layers
 - `assets/js/site.js` nav, reveal effects, validation, and form submission

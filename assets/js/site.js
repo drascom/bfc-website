@@ -739,23 +739,35 @@
 
     const cityGeo = {
       Elstree: { lat: 51.6519, lon: -0.3258 },
-      London: { lat: 51.5074, lon: -0.1278 },
+      London: { lat: 51.5074, lon: -0.1278, core: true },
+      Edinburgh: { lat: 55.9533, lon: -3.1883 },
       Paris: { lat: 48.8566, lon: 2.3522 },
       Geneva: { lat: 46.2044, lon: 6.1432 },
       Frankfurt: { lat: 50.1109, lon: 8.6821 },
       Milan: { lat: 45.4642, lon: 9.19 },
       Vienna: { lat: 48.2082, lon: 16.3738 },
-      Istanbul: { lat: 41.0082, lon: 28.9784, core: true }
+      Madrid: { lat: 40.4168, lon: -3.7038 },
+      Barcelona: { lat: 41.3874, lon: 2.1686 },
+      Rome: { lat: 41.9028, lon: 12.4964 },
+      Athens: { lat: 37.9838, lon: 23.7275 },
+      Cyprus: { lat: 35.1264, lon: 33.4299 },
+      Istanbul: { lat: 41.0082, lon: 28.9784 }
     };
 
     const routes = [
-      { from: "Istanbul", to: "Elstree" },
-      { from: "Istanbul", to: "London" },
-      { from: "Istanbul", to: "Paris" },
-      { from: "Istanbul", to: "Geneva" },
-      { from: "Istanbul", to: "Frankfurt" },
-      { from: "Istanbul", to: "Milan" },
-      { from: "Istanbul", to: "Vienna" }
+      { from: "London", to: "Elstree" },
+      { from: "London", to: "Edinburgh" },
+      { from: "London", to: "Paris" },
+      { from: "London", to: "Geneva" },
+      { from: "London", to: "Frankfurt" },
+      { from: "London", to: "Milan" },
+      { from: "London", to: "Vienna" },
+      { from: "London", to: "Madrid" },
+      { from: "London", to: "Barcelona" },
+      { from: "London", to: "Rome" },
+      { from: "London", to: "Athens" },
+      { from: "London", to: "Cyprus" },
+      { from: "London", to: "Istanbul" }
     ];
 
     const map = L.map(mapEl, {
@@ -805,21 +817,21 @@
         [to.lat, to.lon]
       ];
 
-      let layer;
-      if (!prefersReducedMotion && L.polyline?.antPath) {
-        layer = L.polyline.antPath(points, {
-          delay: 700,
-          dashArray: [8, 14],
-          weight: 2.4,
-          color: "#E0218A",
-          pulseColor: "#C8A85C",
-          opacity: 0.9
-        }).addTo(map);
-      } else {
-        layer = L.polyline(points, { color: "#E0218A", weight: 2.4, opacity: 0.9, dashArray: "8 12" }).addTo(map);
-      }
+      const baseLayer = L.polyline(points, {
+        color: "#AAB1BD",
+        weight: 2.2,
+        opacity: 0.8,
+        dashArray: "8 12"
+      }).addTo(map);
 
-      routeLayers.push({ layer, from: route.from, to: route.to });
+      const progressLayer = L.polyline([points[0], points[0]], {
+        color: "#E0218A",
+        weight: 2.6,
+        opacity: 0.95,
+        dashArray: "8 12"
+      }).addTo(map);
+
+      routeLayers.push({ baseLayer, progressLayer, from: route.from, to: route.to });
 
       const plane = L.marker(points[0], { icon: planeIcon, interactive: false, keyboard: false }).addTo(map);
       planeMarkers.push({
@@ -827,7 +839,8 @@
         from: points[0],
         to: points[1],
         t: (idx * 0.13) % 1,
-        speed: 0.0019 + (idx % 4) * 0.00024
+        speed: 0.0019 + (idx % 4) * 0.00024,
+        progressLayer
       });
     });
 
@@ -837,7 +850,9 @@
       planeMarkers.forEach((p) => {
         p.t += p.speed;
         if (p.t >= 1) p.t -= 1;
-        p.marker.setLatLng(lerp(p.from, p.to, p.t));
+        const current = lerp(p.from, p.to, p.t);
+        p.marker.setLatLng(current);
+        p.progressLayer.setLatLngs([p.from, current]);
       });
       raf = requestAnimationFrame(step);
     };
@@ -850,14 +865,27 @@
         el.classList.toggle("is-active", name === city);
       });
       routeLayers.forEach((r) => {
-        const active = city === "Istanbul" ? r.from === "Istanbul" : r.to === city || r.from === city;
-        if (typeof r.layer.setStyle === "function") {
-          r.layer.setStyle(active ? { weight: 3.4, opacity: 1 } : { weight: 2.4, opacity: 0.82 });
-        }
+        const active = city === "London" ? r.from === "London" : r.to === city || r.from === city;
+        r.baseLayer.setStyle(active ? { weight: 2.8, opacity: 0.9 } : { weight: 2.2, opacity: 0.72 });
+        r.progressLayer.setStyle(active ? { weight: 3.2, opacity: 1 } : { weight: 2.6, opacity: 0.9 });
       });
     };
 
-    const cycleCities = ["London", "Paris", "Geneva", "Frankfurt", "Milan", "Vienna", "Istanbul"];
+    const cycleCities = [
+      "London",
+      "Edinburgh",
+      "Paris",
+      "Geneva",
+      "Frankfurt",
+      "Milan",
+      "Vienna",
+      "Madrid",
+      "Barcelona",
+      "Rome",
+      "Athens",
+      "Cyprus",
+      "Istanbul"
+    ];
     let activeIndex = 0;
     setActiveCity(cycleCities[activeIndex]);
 
