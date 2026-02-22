@@ -559,11 +559,32 @@
   line-height: 1.25;
 }
 
+.logo-image {
+  width: 78px;
+  height: 42px;
+  object-fit: contain;
+  object-position: center;
+  flex-shrink: 0;
+  filter: grayscale(1) contrast(1.05);
+  opacity: 0.92;
+  transition: filter var(--duration-fast) var(--ease-main), opacity var(--duration-fast) var(--ease-main);
+}
+
+.logo-image.logo-wide {
+  width: 110px;
+}
+
 .logo-item:hover,
 .logo-item:focus-within {
   transform: translateY(-4px);
   box-shadow: 0 12px 30px rgba(200, 168, 92, 0.2);
   border-color: rgba(200, 168, 92, 0.56);
+}
+
+.logo-item:hover .logo-image,
+.logo-item:focus-within .logo-image {
+  filter: grayscale(0.1) contrast(1.12);
+  opacity: 1;
 }
 
 .partners-section .logo-item {
@@ -577,6 +598,10 @@
 .partners-section .logo-item:focus-within {
   background: linear-gradient(145deg, #ffffff, #f4e5bd);
   box-shadow: 0 16px 30px rgba(11, 28, 45, 0.14);
+}
+
+.partners-section .logo-mark {
+  display: none;
 }
 
 .fleet-media {

@@ -1,0 +1,28 @@
+{
+  "name": "bfc-website",
+  "version": "1.0.0",
+  "description": "- `index.html` homepage - `inspections.html` aircraft inspection services page - `fleet.html` passenger fleet page (ERJ145 + Hawker 400XP) - `contact.html` contact page - `assets/css/` tokenized styling and animation layers - `assets/js/site.js` nav, reveal effects, validation, and form submission - `assets/media/` placeholder visuals for hero/fleet",
+  "main": "parse_test.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/drascom/bfc-website.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/drascom/bfc-website/issues"
+  },
+  "homepage": "https://github.com/drascom/bfc-website#readme",
+  "dependencies": {
+    "jsdom": "^28.1.0",
+    "playwright": "^1.58.2"
+  }
+}
