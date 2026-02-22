@@ -2,12 +2,15 @@
   "name": "bfc-website",
   "version": "1.0.0",
   "description": "- `index.html` homepage - `inspections.html` aircraft inspection services page - `fleet.html` passenger fleet page (ERJ145 + Hawker 400XP) - `contact.html` contact page - `assets/css/` tokenized styling and animation layers - `assets/js/site.js` nav, reveal effects, validation, and form submission - `assets/media/` placeholder visuals for hero/fleet",
-  "main": "parse_test.js",
+  "main": "server.js",
   "directories": {
     "doc": "docs"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo 'No automated tests configured yet'",
+    "start": "node server.js",
+    "dev": "node --watch server.js",
+    "migrate": "node backend/migrate.js"
   },
   "repository": {
     "type": "git",
@@ -22,7 +25,19 @@
   },
   "homepage": "https://github.com/drascom/bfc-website#readme",
   "dependencies": {
+    "argon2": "^0.44.0",
+    "better-sqlite3": "^12.6.2",
+    "connect-sqlite3": "^0.9.16",
+    "csurf": "^1.11.0",
+    "dotenv": "^17.3.1",
+    "express": "^5.2.1",
+    "express-rate-limit": "^8.2.1",
+    "express-session": "^1.19.0",
+    "helmet": "^8.1.0",
     "jsdom": "^28.1.0",
-    "playwright": "^1.58.2"
+    "nanoid": "^5.1.6",
+    "nodemailer": "^8.0.1",
+    "playwright": "^1.58.2",
+    "zod": "^4.3.6"
   }
 }

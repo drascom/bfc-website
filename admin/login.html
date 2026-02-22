@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Login | British Flight Center</title>
+    <link rel="stylesheet" href="/admin/admin.css" />
+  </head>
+  <body class="admin-body">
+    <main class="admin-login-wrap">
+      <section class="admin-card">
+        <h1>Admin Login</h1>
+        <p class="muted">Sign in to access booking/contact submissions.</p>
+
+        <form id="admin-login-form" class="stack">
+          <label>
+            Email
+            <input type="email" name="email" required placeholder="admin@company.com" />
+          </label>
+          <label>
+            Password
+            <input type="password" name="password" required placeholder="Password" />
+          </label>
+          <button type="submit">Sign In</button>
+          <p id="login-error" class="error-text" aria-live="polite"></p>
+        </form>
+      </section>
+    </main>
+    <script src="/admin/admin.js"></script>
+  </body>
+</html>

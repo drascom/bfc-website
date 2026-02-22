@@ -1,7 +1,10 @@
 (() => {
   const siteConfig = {
-    FORM_ENDPOINT: "https://formspree.io/f/your_form_id",
     MAX_PASSENGERS: 19,
+    API_ENDPOINTS: {
+      booking: "/api/submissions/booking",
+      contact: "/api/submissions/contact"
+    },
     THEME_COLORS: {
       primary: "#E0218A",
       secondary: "#0B1C2D",
@@ -497,6 +500,12 @@
     el.textContent = text;
   };
 
+  const applyServerErrors = (form, errors = {}) => {
+    Object.entries(errors).forEach(([field, message]) => {
+      setError(form, field, message || "Invalid value.");
+    });
+  };
+
   const setDepartureMin = (form) => {
     const departure = form.elements.departure_date;
     const ret = form.elements.return_date;
@@ -532,16 +541,27 @@
 
     try {
       const payload = buildPayload(form);
+      const res = await fetch(siteConfig.API_ENDPOINTS.contact, {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify(payload)
+      });
+      const result = await res.json();
+      if (!res.ok || !result.ok) {
+        if (result?.errors) {
+          applyServerErrors(form, result.errors);
+        }
+        throw new Error("Contact submission failed");
+      }
+      responseMessage(form, "success", "");
 
-      // Fake submit since API may not process yet
-      await new Promise(resolve => setTimeout(resolve, 800));
-
-      responseMessage(form, "success", "Quote request initiated. You will be redirected shortly.");
-
-      // Wait another sec, then redirect
-      setTimeout(() => {
-        window.location.href = siteConfig.BOOKING_PAGE_URL;
-      }, 800);
+      const contactConfirmation = form.parentElement?.querySelector("[data-contact-confirmation]");
+      if (contactConfirmation) {
+        form.hidden = true;
+        contactConfirmation.hidden = false;
+      } else {
+        responseMessage(form, "success", "Your booking request has been sent securely. Our operations team will contact you.");
+      }
 
     } catch (err) {
       console.error(err);
@@ -690,6 +710,8 @@
         responseMessage(bookingForm, "error", "Please fix highlighted fields and try again.");
         return;
       }
+      clearErrors(bookingForm);
+      responseMessage(bookingForm, "", "");
 
       const submitButton = bookingForm.querySelector('button[type="submit"]');
       const originalText = submitButton ? submitButton.textContent : "";
@@ -700,13 +722,22 @@
 
       try {
         const payload = buildPayload(bookingForm);
-
-        // Simulated network request (fake submit)
-        await new Promise(resolve => setTimeout(resolve, 1200));
+        const res = await fetch(siteConfig.API_ENDPOINTS.booking, {
+          method: "POST",
+          headers: { "Content-Type": "application/json", Accept: "application/json" },
+          body: JSON.stringify(payload)
+        });
+        const result = await res.json();
+        if (!res.ok || !result.ok) {
+          if (result?.errors) {
+            applyServerErrors(bookingForm, result.errors);
+          }
+          throw new Error("Booking submission failed");
+        }
 
         if (summaryEl) {
           const depTime = payload.departure_time === "anytime" ? "Anytime" : payload.departure_time;
-          summaryEl.textContent = `Route: ${payload.from} -> ${payload.to} | Departure: ${payload.departure_date} ${depTime}`;
+          summaryEl.textContent = `Reference: ${result.id} | Route: ${payload.from} -> ${payload.to} | Departure: ${payload.departure_date} ${depTime}`;
         }
         showStep(3);
       } catch (err) {

@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin CRM | British Flight Center</title>
+    <link rel="stylesheet" href="/admin/admin.css" />
+  </head>
+  <body class="admin-body">
+    <header class="admin-topbar">
+      <div>
+        <h1>Submission CRM</h1>
+        <p id="admin-session-email" class="muted"></p>
+      </div>
+      <button id="admin-logout-btn" class="ghost-btn" type="button">Logout</button>
+    </header>
+
+    <main class="admin-layout">
+      <section class="admin-card">
+        <h2>Filters</h2>
+        <form id="filters-form" class="filters-grid">
+          <label>
+            Status
+            <select name="status">
+              <option value="">All</option>
+              <option value="new">New</option>
+              <option value="contacted">Contacted</option>
+              <option value="qualified">Qualified</option>
+              <option value="closed">Closed</option>
+              <option value="spam">Spam</option>
+            </select>
+          </label>
+          <label>
+            Source
+            <select name="source">
+              <option value="">All</option>
+              <option value="booking">Booking</option>
+              <option value="contact">Contact</option>
+            </select>
+          </label>
+          <label>
+            Search
+            <input name="q" type="search" placeholder="ID, name, email, phone" />
+          </label>
+          <label>
+            Date From
+            <input name="dateFrom" type="date" />
+          </label>
+          <label>
+            Date To
+            <input name="dateTo" type="date" />
+          </label>
+          <label>
+            Sort
+            <select name="sort">
+              <option value="created_desc">Newest</option>
+              <option value="created_asc">Oldest</option>
+              <option value="updated_desc">Recently Updated</option>
+              <option value="updated_asc">Least Recently Updated</option>
+            </select>
+          </label>
+          <div class="filters-actions">
+            <button type="submit">Apply</button>
+            <button type="button" id="filters-reset">Reset</button>
+            <button type="button" id="export-csv-btn">Export CSV</button>
+          </div>
+        </form>
+      </section>
+
+      <section class="admin-card">
+        <div class="section-head">
+          <h2>Submissions</h2>
+          <p id="table-meta" class="muted"></p>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Source</th>
+                <th>Status</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Created</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody id="submissions-tbody"></tbody>
+          </table>
+        </div>
+        <div class="pager">
+          <button type="button" id="prev-page">Prev</button>
+          <span id="page-label">Page 1</span>
+          <button type="button" id="next-page">Next</button>
+        </div>
+      </section>
+    </main>
+
+    <div id="detail-overlay" class="detail-overlay" hidden></div>
+    <aside id="detail-sidebar" class="detail-sidebar" aria-hidden="true">
+      <div class="detail-sidebar-head">
+        <h2>Submission Detail</h2>
+        <button type="button" id="detail-close-btn" class="ghost-btn">Close</button>
+      </div>
+
+      <dl id="detail-grid" class="detail-grid"></dl>
+
+      <form id="detail-update-form" class="stack">
+        <label>
+          Status
+          <select name="status" required>
+            <option value="new">New</option>
+            <option value="contacted">Contacted</option>
+            <option value="qualified">Qualified</option>
+            <option value="closed">Closed</option>
+            <option value="spam">Spam</option>
+          </select>
+        </label>
+        <label>
+          Admin Notes
+          <textarea name="admin_notes" rows="5" placeholder="Internal notes"></textarea>
+        </label>
+        <button type="submit">Save Updates</button>
+        <p id="detail-save-msg" class="muted"></p>
+      </form>
+    </aside>
+
+    <script src="/admin/admin.js"></script>
+  </body>
+</html>

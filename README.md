@@ -1,38 +1,72 @@
-# British Flight Center v1 (Static Site)
+# British Flight Center Website + Admin CRM
 
-## Files
-- `index.html` homepage
-- `inspections.html` aircraft inspection services page
-- `fleet.html` passenger fleet page (ERJ145 + Hawker 400XP)
-- `contact.html` contact page
-- `assets/css/` tokenized styling and animation layers
-- `assets/js/site.js` nav, reveal effects, validation, and form submission
-- `assets/media/` placeholder visuals for hero/fleet
+This project now runs as a Node.js app with:
+- Public website pages (`index.html`, `booking.html`, `contact.html`, `fleet.html`, `inspections.html`)
+- Submission API for booking/contact forms
+- SQLite storage
+- Admin CRM dashboard (`/admin`) with login, filters, status workflow, notes, and CSV export
 
-## Form Endpoint Setup
-1. Open `assets/js/site.js`
-2. Replace `FORM_ENDPOINT` with your Formspree/Web3Forms endpoint
+## Stack
+- Node.js + Express
+- SQLite (`better-sqlite3`)
+- Session auth (`express-session` + `connect-sqlite3`)
+- Validation (`zod`)
+- Notifications (`nodemailer` via SMTP)
 
-## Hero Video Setup
-- Add files:
-  - `assets/media/hero-loop.webm`
-  - `assets/media/hero-loop-small.mp4`
-- Keep the poster fallback at `assets/media/hero-poster.jpg` (or replace with your image)
+## Quick Start
+1. Install dependencies:
+```bash
+npm ci
+```
 
-## Homepage Screenshots
-Captured from:
-- `http://127.0.0.1:5173/index.html`
+2. Create env file:
+```bash
+cp .env.example .env
+```
+Set at minimum:
+- `SESSION_SECRET`
+- `ADMIN_EMAIL`
+- `ADMIN_PASSWORD` (or `ADMIN_PASSWORD_HASH`)
 
-Desktop:
-![Homepage Desktop](docs/screenshots/home-desktop.png)
+3. Run migrations + seed admin:
+```bash
+npm run migrate
+```
 
-Mobile:
-![Homepage Mobile](docs/screenshots/home-mobile.png)
+4. Start server:
+```bash
+npm start
+```
 
-## Placeholder Media Sources (Free)
-- Video: [Coverr](https://coverr.co/videos/private-jets-at-an-airport-c9QWX5kH4L)
-- Fleet image 1: [Pexels](https://www.pexels.com/photo/private-jet-at-sunset-on-runway-28772726/)
-- Fleet image 2: [Pexels](https://www.pexels.com/photo/aircraft-under-blue-sky-28321097/)
+App runs at `http://127.0.0.1:5173` by default.
 
-## cPanel Deployment
-Upload all files/folders to your domain document root (`public_html` or equivalent).
+## Admin
+- Login page: `http://127.0.0.1:5173/admin/login.html`
+- Protected dashboard: `http://127.0.0.1:5173/admin`
+
+## API
+### Public
+- `POST /api/submissions/booking`
+- `POST /api/submissions/contact`
+
+### Admin
+- `POST /api/admin/login`
+- `GET /api/admin/session`
+- `POST /api/admin/logout` (CSRF required)
+- `GET /api/admin/submissions`
+- `GET /api/admin/submissions/:id`
+- `PATCH /api/admin/submissions/:id` (CSRF required)
+- `GET /api/admin/submissions/export.csv`
+
+## Deployment (VPS)
+1. Install Node LTS and Nginx.
+2. Configure `.env`.
+3. Run:
+```bash
+npm ci
+npm run migrate
+npm start
+```
+4. Put behind Nginx reverse proxy + TLS.
+5. Configure SMTP env vars for notifications.
+6. Schedule daily backup of `data/*.sqlite`.

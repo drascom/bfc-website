@@ -65,42 +65,94 @@
                             <li><span>Main Airport</span><strong>Elstree Aerodrome</strong></li>
                             <li><span>Coverage</span><strong>Europe corridors</strong></li>
                         </ul>
+                        <div class="logo-strip contact-partners" style="margin-top: 1.5rem;">
+                            <div class="logo-item">
+                                <img class="logo-image logo-wide" src="assets/icons/partners/elstree-aerodrome.png"
+                                    alt="London Elstree Aerodrome logo" loading="lazy" />
+                            </div>
+                            <div class="logo-item">
+                                <img class="logo-image logo-square" src="assets/icons/partners/iata.svg"
+                                    alt="IATA logo" loading="lazy" />
+                            </div>
+                            <div class="logo-item">
+                                <img class="logo-image logo-square" src="assets/icons/partners/icao.svg"
+                                    alt="ICAO logo" loading="lazy" />
+                            </div>
+                            <div class="logo-item">
+                                <img class="logo-image" src="assets/icons/partners/easa.svg" alt="EASA logo"
+                                    loading="lazy" />
+                            </div>
+                            <div class="logo-item">
+                                <img class="logo-image" src="assets/icons/partners/eurocontrol.svg"
+                                    alt="EUROCONTROL logo" loading="lazy" />
+                            </div>
+                        </div>
                     </article>
 
                     <article class="quote-card glass reveal">
                         <h2 style="font-size: 1.75rem; margin-bottom: 1rem;">Send Inquiry</h2>
-                        <p style="color: var(--color-text-muted); margin-bottom: 2rem; font-size: 0.9rem;">For immediate
-                            scheduling, include passenger count and preferred departure window.</p>
+                        <p style="color: var(--color-text-muted); margin-bottom: 2rem; font-size: 0.9rem;">Share your
+                            contact details and request notes. Our operations team will respond shortly.</p>
                         <form class="quote-form" data-form-role="contact" data-source-page="contact_page">
                             <div class="field">
                                 <label for="contact_name">Name <span class="req-mark">*</span></label>
                                 <input id="contact_name" name="contact_name" type="text" placeholder="Full name"
                                     required />
+                                <p class="error-note" data-error-for="contact_name"></p>
                             </div>
 
                             <div class="field">
                                 <label for="contact_email">Email <span class="req-mark">*</span></label>
                                 <input id="contact_email" name="contact_email" type="email"
                                     placeholder="you@company.com" required />
+                                <p class="error-note" data-error-for="contact_email"></p>
                             </div>
 
                             <div class="field">
-                                <label for="from">Departure Airport <span class="req-mark">*</span></label>
-                                <input id="from" name="from" type="text" placeholder="Search departure airport"
+                                <label for="contact_phone">Phone <span class="req-mark">*</span></label>
+                                <input id="contact_phone" name="contact_phone" type="tel" placeholder="+44 20..."
                                     required />
+                                <p class="error-note" data-error-for="contact_phone"></p>
                             </div>
 
-                            <div class="field">
-                                <label for="to">Destination Airport <span class="req-mark">*</span></label>
-                                <input id="to" name="to" type="text" placeholder="Search destination airport"
-                                    required />
+                            <div class="field field-full">
+                                <label for="notes">Notes <span
+                                        style="font-weight: normal; color: var(--color-text-muted); text-transform: none; letter-spacing: 0;">(Optional)</span></label>
+                                <textarea id="notes" name="notes"
+                                    placeholder="Route preferences, schedule window, passenger count, and any special requirements."></textarea>
                             </div>
 
+                            <p class="field field-full" data-form-response
+                                style="margin-top: 0.5rem; font-size: 0.9rem; min-height: 1.4em;"></p>
                             <div class="field field-full quote-actions" style="margin-top: 1rem;">
                                 <button class="btn btn-primary btn-shimmer" type="submit" style="width: 100%;">Submit
                                     Inquiry</button>
                             </div>
                         </form>
+
+                        <section class="quote-confirmation" data-contact-confirmation aria-live="polite" hidden>
+                            <h3 style="font-size: 1.5rem; color: var(--color-primary); margin-bottom: 1rem;">Request
+                                Received</h3>
+                            <p style="color: var(--color-text-muted);">
+                                Your booking request has been sent securely. Our operations team will contact you.
+                            </p>
+                            <p class="quote-confirmation-summary">Our desk will review your details and follow up with
+                                next steps.</p>
+
+                            <div
+                                style="margin: 2rem 0; padding: 1.5rem; background: var(--color-bg-black-alpha-30); border-radius: 6px; border-left: 3px solid var(--color-primary);">
+                                <p style="margin-bottom: 0.5rem; color: var(--color-text-main);"><strong>Need immediate
+                                        assistance?</strong></p>
+                                <p style="color: var(--color-text-muted); margin-bottom: 0.3rem;">Call us: <a
+                                        href="tel:+442000000000"
+                                        style="color: var(--color-primary); text-decoration: none; font-weight: 500;">+44
+                                        20 0000 0000</a></p>
+                                <p style="color: var(--color-text-muted);">Email: <a
+                                        href="mailto:ops@britishflightcenter.com"
+                                        style="color: var(--color-primary); text-decoration: none; font-weight: 500;">ops@britishflightcenter.com</a>
+                                </p>
+                            </div>
+                        </section>
                     </article>
                 </div>
             </div>

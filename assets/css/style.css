@@ -1076,6 +1076,12 @@ footer {
 .logo-item { flex: 1; min-width: 150px; background: var(--color-bg-panel-light); border: 1px solid var(--color-eflatun-alpha-30); padding: 1.5rem; border-radius: 6px; display: flex; align-items: center; justify-content: center; gap: 1rem; transition: var(--transition-smooth); box-shadow: 0 4px 18px var(--color-eflatun-alpha-15), inset 0 0 0 1px var(--color-eflatun-alpha-10); }
 .logo-item:hover { transform: translateY(-6px); border-color: var(--color-primary); box-shadow: 0 12px 32px var(--color-eflatun-alpha-30), 0 0 0 1px var(--color-primary-alpha-30); }
 
+@media (max-width: 1024px) {
+  .contact-partners {
+    display: none;
+  }
+}
+
 /* Dark mode: invert logos to white */
 .logo-image { filter: brightness(0) invert(1) opacity(0.9); max-height: 40px; transition: var(--transition-smooth); }
 .logo-image.logo-wide { max-height: 32px; max-width: 140px; }

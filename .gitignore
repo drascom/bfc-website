@@ -43,6 +43,8 @@ __pycache__/
 logs/
 *.log
 *.sqlite
+*.sqlite-shm
+*.sqlite-wal
 *.db
 
 # Build artifacts and caches
