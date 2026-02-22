@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact | British Flight Center</title>
+    <meta
+      name="description"
+      content="Contact British Flight Center for private jet charter coordination across Europe and Iran."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="assets/css/tokens.css" />
+    <link rel="stylesheet" href="assets/css/base.css" />
+    <link rel="stylesheet" href="assets/css/components.css" />
+    <link rel="stylesheet" href="assets/css/animations.css" />
+    <script src="assets/js/site.js" defer></script>
+  </head>
+  <body>
+    <header class="site-header load-in">
+      <div class="container nav-wrap">
+        <a class="brand" href="index.html">British Flight Center</a>
+        <button class="nav-toggle" type="button" data-nav-toggle aria-expanded="false" aria-controls="main-menu">
+          Menu
+        </button>
+        <ul class="nav-menu" id="main-menu" data-nav-menu>
+          <li><a class="nav-link" href="fleet.html">Fleet</a></li>
+          <li><a class="nav-link" href="index.html#destinations">Destinations</a></li>
+          <li><a class="nav-link" href="index.html#about">About</a></li>
+          <li><a class="nav-link" href="contact.html">Contact</a></li>
+          <li><a class="btn btn-primary btn-shimmer" href="booking.html">Request Quote</a></li>
+        </ul>
+      </div>
+    </header>
+
+    <main>
+      <section class="page-header">
+        <div class="container reveal">
+          <span class="kicker">Contact</span>
+          <h1 class="mask-reveal">Flight Coordination Desk</h1>
+          <p>Share route requirements and timing. Our team responds with a manual quote and dispatch guidance.</p>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container grid grid-2">
+          <article class="surface reveal" style="padding: 1.6rem">
+            <h2 class="section-title" style="font-size: 2rem">Contact Details</h2>
+            <p><strong>Operations Phone:</strong> +44 20 0000 0000</p>
+            <p><strong>Email:</strong> ops@britishflightcenter.com</p>
+            <p><strong>Main Airport:</strong> Elstree Aerodrome (closest airport to London)</p>
+            <p><strong>Coverage:</strong> Europe + Iran corridors</p>
+            <p><strong>Ground Service:</strong> Chauffeur and airport transfer coordination available</p>
+            <div class="section-divider"></div>
+            <h3 style="font-size: 1.45rem">Route Focus</h3>
+            <div class="destinations-list" style="margin-top: 1rem">
+              <span>London - Tehran</span>
+              <span>Paris - Tehran</span>
+              <span>Geneva - Tehran</span>
+              <span>UK - EU business hubs</span>
+            </div>
+          </article>
+
+          <article class="quote-card glass reveal">
+            <h2 class="section-title" style="font-size: 1.75rem">Send Inquiry</h2>
+            <p>For immediate scheduling, include passenger count and preferred departure window.</p>
+            <form class="quote-form" data-form-role="contact" data-source-page="contact_page">
+              <div class="field">
+                <label for="contact_name">Name <span class="req-mark">*</span></label>
+                <input id="contact_name" name="contact_name" type="text" placeholder="Full name" required />
+                <p class="error-note" data-error-for="contact_name"></p>
+              </div>
+
+              <div class="field">
+                <label for="contact_email">Email <span class="req-mark">*</span></label>
+                <input id="contact_email" name="contact_email" type="email" placeholder="you@company.com" required />
+                <p class="error-note" data-error-for="contact_email"></p>
+              </div>
+
+              <div class="field">
+                <label for="contact_phone">Phone (Optional)</label>
+                <input id="contact_phone" name="contact_phone" type="tel" placeholder="+44 ..." />
+              </div>
+
+              <div class="field">
+                <label for="from">From <span class="req-mark">*</span></label>
+                <input id="from" name="from" type="text" placeholder="Departure airport/city" required />
+                <p class="error-note" data-error-for="from"></p>
+              </div>
+
+              <div class="field">
+                <label for="to">To <span class="req-mark">*</span></label>
+                <input id="to" name="to" type="text" placeholder="Arrival airport/city" required />
+                <p class="error-note" data-error-for="to"></p>
+              </div>
+
+              <div class="field">
+                <label for="departure_date">Departure Date <span class="req-mark">*</span></label>
+                <input id="departure_date" name="departure_date" type="date" required />
+                <p class="error-note" data-error-for="departure_date"></p>
+              </div>
+
+              <div class="field">
+                <label for="return_date">Return Date (Optional)</label>
+                <input id="return_date" name="return_date" type="date" />
+                <p class="error-note" data-error-for="return_date"></p>
+              </div>
+
+              <div class="field">
+                <label for="passengers">Passengers <span class="req-mark">*</span></label>
+                <input id="passengers" name="passengers" type="number" min="1" max="19" required />
+                <p class="error-note" data-error-for="passengers"></p>
+              </div>
+
+              <div class="field field-full">
+                <label for="notes">Message</label>
+                <textarea id="notes" name="notes" placeholder="Mission details, flexibility, baggage, or special requests"></textarea>
+              </div>
+
+              <p class="form-response" data-form-response></p>
+              <button class="btn btn-primary btn-shimmer field-full" type="submit">Submit Inquiry</button>
+            </form>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-row">
+        <p>&copy; <span id="year">2026</span> British Flight Center. All rights reserved.</p>
+        <p>Response target: same day for standard requests.</p>
+      </div>
+    </footer>
+
+    <script>
+      document.getElementById("year").textContent = String(new Date().getFullYear());
+    </script>
+  </body>
+</html>

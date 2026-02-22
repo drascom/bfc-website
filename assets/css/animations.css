@@ -1,0 +1,175 @@
+@keyframes shimmer {
+  from {
+    transform: translateX(-120%);
+  }
+  to {
+    transform: translateX(120%);
+  }
+}
+
+@keyframes tintFlow {
+  from {
+    transform: scale(1) translateX(0);
+    opacity: 0.85;
+  }
+  to {
+    transform: scale(1.08) translateX(1.5%);
+    opacity: 1;
+  }
+}
+
+@keyframes dividerFlow {
+  from {
+    background-position: 200% 50%;
+  }
+  to {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes riseIn {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 26px, 0) scale(0.985);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+}
+
+@keyframes dash {
+  to {
+    stroke-dashoffset: -16;
+  }
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(0.2);
+    opacity: 0.75;
+  }
+  70% {
+    opacity: 0.12;
+  }
+  100% {
+    transform: scale(2.4);
+    opacity: 0;
+  }
+}
+
+@keyframes routePulse {
+  0% {
+    stroke-dashoffset: 0;
+    opacity: 0.45;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    stroke-dashoffset: -140;
+    opacity: 0.45;
+  }
+}
+
+@keyframes nodePulse {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.95;
+  }
+  50% {
+    transform: scale(1.12);
+    opacity: 1;
+  }
+}
+
+@keyframes planeFloat {
+  0%,
+  100% {
+    transform: translateY(0) rotate(35deg);
+  }
+  50% {
+    transform: translateY(-2px) rotate(35deg);
+  }
+}
+
+@keyframes maskIn {
+  from {
+    clip-path: inset(0 100% 0 0);
+  }
+  to {
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+.reveal {
+  opacity: 0;
+  transform: translate3d(0, 24px, 0);
+  transition: opacity var(--duration-slow) var(--ease-main), transform var(--duration-slow) var(--ease-main);
+  will-change: transform, opacity;
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
+
+.reveal-stagger > * {
+  opacity: 0;
+  transform: translate3d(0, 20px, 0);
+}
+
+.reveal-stagger.is-visible > * {
+  animation: riseIn var(--duration-slow) var(--ease-main) forwards;
+}
+
+.reveal-stagger.is-visible > *:nth-child(2) {
+  animation-delay: 70ms;
+}
+
+.reveal-stagger.is-visible > *:nth-child(3) {
+  animation-delay: 140ms;
+}
+
+.reveal-stagger.is-visible > *:nth-child(4) {
+  animation-delay: 210ms;
+}
+
+.mask-reveal {
+  animation: maskIn 1s var(--ease-main) both;
+}
+
+.load-in {
+  opacity: 0;
+  animation: riseIn 900ms var(--ease-main) forwards;
+}
+
+.load-in.delay-1 {
+  animation-delay: 120ms;
+}
+
+.load-in.delay-2 {
+  animation-delay: 240ms;
+}
+
+.load-in.delay-3 {
+  animation-delay: 360ms;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition-duration: 0.01ms !important;
+    transition-delay: 0ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .reveal,
+  .reveal-stagger > * {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}

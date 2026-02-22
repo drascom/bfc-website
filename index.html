@@ -1,0 +1,293 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>British Flight Center | Private Jet Charter</title>
+    <meta
+      name="description"
+      content="Private jet charter across Europe and Iran. UK based, discreet, reliable, and tailored aviation services."
+    />
+    <meta property="og:title" content="British Flight Center" />
+    <meta
+      property="og:description"
+      content="Private jet charter across Europe and Iran with a premium request-quote experience."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="assets/media/hero-poster.jpg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link rel="stylesheet" href="assets/css/tokens.css" />
+    <link rel="stylesheet" href="assets/css/base.css" />
+    <link rel="stylesheet" href="assets/css/components.css" />
+    <link rel="stylesheet" href="assets/css/animations.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/leaflet-ant-path@1.3.0/dist/leaflet-ant-path.min.js" defer></script>
+    <script src="assets/js/site.js" defer></script>
+  </head>
+  <body>
+    <header class="site-header load-in">
+      <div class="container nav-wrap">
+        <a class="brand" href="index.html">British Flight Center</a>
+        <button class="nav-toggle" type="button" data-nav-toggle aria-expanded="false" aria-controls="main-menu">
+          Menu
+        </button>
+        <ul class="nav-menu" id="main-menu" data-nav-menu>
+          <li><a class="nav-link" href="fleet.html">Fleet</a></li>
+          <li><a class="nav-link" href="#destinations">Destinations</a></li>
+          <li><a class="nav-link" href="#about">About</a></li>
+          <li><a class="nav-link" href="contact.html">Contact</a></li>
+          <li><a class="btn btn-primary btn-shimmer" href="booking.html">Request Quote</a></li>
+        </ul>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero" id="top">
+        <div class="hero-media" aria-hidden="true">
+          <video autoplay muted loop playsinline preload="metadata" poster="assets/media/hero-poster.jpg">
+            <source src="assets/media/hero-loop.webm" type="video/webm" />
+            <source src="assets/media/hero-loop-small.mp4" type="video/mp4" />
+          </video>
+          <img class="hero-mobile-image" src="assets/media/hero-poster.jpg" alt="" loading="eager" decoding="async" />
+        </div>
+
+        <div class="container hero-content">
+          <div class="hero-grid">
+            <article id="request-quote" class="quote-card glass reveal">
+              <h2 class="section-title" style="font-size: 1.7rem">Request a Quote</h2>
+              <form class="quote-form" data-form-role="quote-start" novalidate>
+                <div class="field">
+                  <label for="home_from">From <span class="req-mark">*</span></label>
+                  <input id="home_from" name="from" type="text" placeholder="Airport or city" required />
+                  <p class="error-note" data-error-for="from"></p>
+                </div>
+
+                <div class="field">
+                  <label for="home_to">To <span class="req-mark">*</span></label>
+                  <input id="home_to" name="to" type="text" placeholder="Airport or city" required />
+                  <p class="error-note" data-error-for="to"></p>
+                </div>
+
+                <div class="field">
+                  <label for="home_departure_date">Departure Date <span class="req-mark">*</span></label>
+                  <input id="home_departure_date" name="departure_date" type="date" required />
+                  <p class="error-note" data-error-for="departure_date"></p>
+                </div>
+
+                <div class="field field-full">
+                  <p class="form-hint">Step 1 of 3. Continue to full booking details on the next page.</p>
+                </div>
+                <button class="btn btn-primary btn-shimmer field-full" type="submit">Continue to Step 2</button>
+              </form>
+            </article>
+
+            <div class="hero-intro">
+              <span class="kicker load-in delay-1">UK Based Aviation</span>
+              <h1 class="hero-heading mask-reveal">Private Jet Charter Across Europe &amp; Iran</h1>
+              <p class="hero-copy load-in delay-2">
+                Based at Elstree Aerodrome (closest private airport to London). Discreet. Reliable. Tailored Aviation.
+              </p>
+              <a class="btn btn-primary btn-shimmer load-in delay-3" href="fleet.html">View Fleet</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section bg-light" id="services" style="content-visibility: auto; contain-intrinsic-size: 900px">
+        <div class="container">
+          <span class="kicker" style="color: var(--color-primary)">Services</span>
+          <h2 class="section-title">Aviation Services Built for Precision</h2>
+          <p class="section-subtitle">
+            We operate with executive-level response times and route flexibility across Europe and Iran.
+          </p>
+
+          <div class="grid grid-3 reveal-stagger" style="margin-top: 2rem">
+            <article class="card">
+              <img
+                class="service-image"
+                src="assets/media/service-charter.jpg"
+                alt="Private charter jet on runway"
+                loading="lazy"
+              />
+              <div class="icon-line">01</div>
+              <h3>Private Jet Charter</h3>
+              <p>
+                Air Charter Service can offer helicopters, private jets and executive airliner charters, as well as a
+                huge range of small specialist aircraft for all business and leisure purposes.
+              </p>
+              <p style="margin-top: 1rem"><a href="contact.html" style="color: var(--color-primary); font-weight: 600">Learn more</a></p>
+            </article>
+            <article class="card">
+              <img
+                class="service-image"
+                src="assets/media/service-business.jpg"
+                alt="Business jet profile in flight"
+                loading="lazy"
+              />
+              <div class="icon-line">02</div>
+              <h3>Group Aircraft Charter</h3>
+              <p>
+                Air Charter Service can arrange charters for larger groups of passengers on aircraft including regional
+                jet airliners and turboprops, VIP &amp; executive airliners, as well as narrow and wide-body airliners.
+              </p>
+              <p style="margin-top: 1rem"><a href="contact.html" style="color: var(--color-primary); font-weight: 600">Learn more</a></p>
+            </article>
+            <article class="card">
+              <img
+                class="service-image"
+                src="assets/media/service-cargo.jpg"
+                alt="Cargo aircraft on airport tarmac"
+                loading="lazy"
+              />
+              <div class="icon-line">03</div>
+              <h3>Cargo Aircraft Charter</h3>
+              <p>
+                Our award winning cargo department offers a full range of cargo aircraft and helicopters, from shipment
+                of small urgent packages to large, heavy outsize consignments.
+              </p>
+              <p style="margin-top: 1rem"><a href="contact.html" style="color: var(--color-primary); font-weight: 600">Learn more</a></p>
+            </article>
+          </div>
+          <p class="section-subtitle" style="margin-top: 1.2rem">
+            We also provide coordinated ground transport to and from Elstree Aerodrome and partner airports.
+          </p>
+        </div>
+      </section>
+
+      <section class="section" id="destinations">
+        <div class="container reveal">
+          <span class="kicker">Destinations</span>
+          <h2 class="section-title">High-Utility Routes Across Key Markets</h2>
+          <p class="">
+            Regular charter corridors include the United Kingdom, Western Europe, and major Iranian gateways.
+          </p>
+          <div class="destinations-layout" style="margin-top: 1.6rem">
+            <article class="route-map-card surface routes-widget">
+              <div class="routes-topbar">
+                <div class="routes-brand">
+                  <span class="routes-dot" aria-hidden="true"></span>
+                  <div>
+                    <p class="routes-title">Routes Map</p>
+                    <p class="routes-subtitle">Elstree / London -> Europe &amp; Iran</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="routes-city-tabs" aria-label="Destinations">
+                <button class="routes-city-tab" type="button" data-city-tab="London">London</button>
+                <button class="routes-city-tab" type="button" data-city-tab="Paris">Paris</button>
+                <button class="routes-city-tab" type="button" data-city-tab="Geneva">Geneva</button>
+                <button class="routes-city-tab" type="button" data-city-tab="Frankfurt">Frankfurt</button>
+                <button class="routes-city-tab" type="button" data-city-tab="Milan">Milan</button>
+                <button class="routes-city-tab" type="button" data-city-tab="Vienna">Vienna</button>
+                <button class="routes-city-tab" type="button" data-city-tab="Istanbul">Istanbul</button>
+                <button class="routes-city-tab" type="button" data-city-tab="Tehran">Tehran</button>
+                <button class="routes-city-tab" type="button" data-city-tab="Kish Island">Kish Island</button>
+                <button class="routes-city-tab" type="button" data-city-tab="Mashhad">Mashhad</button>
+              </div>
+
+              <div class="routes-stage">
+                <div id="routes-map" class="routes-map-canvas" role="img" aria-label="Animated charter routes from Istanbul to key cities."></div>
+              </div>
+
+              <div class="routes-legend">
+                <span class="routes-pill"><span class="routes-swatch"></span> Active route</span>
+                <span class="routes-pill"><span class="routes-swatch routes-swatch-gold"></span> Aircraft marker</span>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <div class="section-divider" aria-hidden="true"></div>
+
+      <section class="section" id="about">
+        <div class="container grid grid-2 reveal">
+          <div>
+            <span class="kicker">About</span>
+            <h2 class="section-title">UK Based Team with Regional Flight Depth</h2>
+            <p>
+              British Flight Center supports private and corporate travel with a compact, high-reliability operating model.
+              Our planning team coordinates permits, slots, and handling to keep passenger experience seamless.
+            </p>
+            <p>
+              We prioritize discretion, operational clarity, and route expertise across Europe and the Middle East.
+            </p>
+          </div>
+          <article class="surface" style="padding: 1.6rem">
+            <h3 style="font-size: 1.5rem">Operating Principles</h3>
+            <ul class="metric-list">
+              <li><span>Dispatch Focus</span><strong>24/7 Coordination</strong></li>
+              <li><span>Primary Airport</span><strong>Elstree Aerodrome (London)</strong></li>
+              <li><span>Route Priority</span><strong>Europe + Iran</strong></li>
+              <li><span>Service Model</span><strong>Manual Quote Control</strong></li>
+              <li><span>Passenger Experience</span><strong>Confidential + Airport Transfers</strong></li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <section class="section bg-light partners-section" id="partners">
+        <div class="container reveal">
+          <span class="kicker" style="color: var(--color-primary)">Elstree Network</span>
+          <h2 class="section-title">Elstree Aerodrome Aviation Community</h2>
+          <p class="section-subtitle">
+            Core operators and training organizations at Elstree Aerodrome, presented as local industry references.
+          </p>
+          <div class="logo-strip" style="margin-top: 1.7rem">
+            <div class="logo-item">
+              <span class="logo-mark">EA</span>
+              <span class="logo-name">Elstree Aerodrome</span>
+            </div>
+            <div class="logo-item">
+              <span class="logo-mark">EH</span>
+              <span class="logo-name">Elstree Helicopters</span>
+            </div>
+            <div class="logo-item">
+              <span class="logo-mark">FE</span>
+              <span class="logo-name">FlyElstree</span>
+            </div>
+            <div class="logo-item">
+              <span class="logo-mark">LEA</span>
+              <span class="logo-name">London Elstree Aviation</span>
+            </div>
+            <div class="logo-item">
+              <span class="logo-mark">EAC</span>
+              <span class="logo-name">Elstree Aviation Centre</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="cta-band">
+        <div class="container grid grid-2 reveal" style="align-items: center">
+          <div>
+            <h2 class="section-title" style="margin-bottom: 0.8rem">Need Immediate Flight Coordination?</h2>
+            <p>Speak directly with our team for urgent charter windows and complex routing requests.</p>
+          </div>
+          <div style="display: flex; gap: 0.8rem; flex-wrap: wrap; justify-content: flex-end">
+            <a class="btn btn-primary btn-shimmer" href="booking.html">Request Quote</a>
+            <a class="btn btn-outline" href="contact.html">Contact Desk</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-row">
+        <p>&copy; <span id="year">2026</span> British Flight Center. All rights reserved.</p>
+        <p>Elstree Aerodrome Base | Europe &amp; Iran Charter Operations</p>
+      </div>
+    </footer>
+
+    <script>
+      document.getElementById("year").textContent = String(new Date().getFullYear());
+    </script>
+  </body>
+</html>

@@ -1,0 +1,46 @@
+:root {
+  --color-primary: #e0218a;
+  --color-secondary: #c8a85c;
+  --color-accent: var(--color-secondary);
+  --color-charcoal: #1a1a1a;
+  --color-offwhite: #f5f5f5;
+
+  --color-bg: #0b1c2d;
+  --color-bg-soft: #1a1a1a;
+  --color-surface: rgba(26, 26, 26, 0.76);
+  --color-text: #f5f5f5;
+  --color-text-muted: #d6d6d6;
+  --color-border: rgba(200, 168, 92, 0.34);
+  --color-success: #87d6b2;
+  --color-error: #f0a3a3;
+
+  --font-heading: "Playfair Display", Georgia, "Times New Roman", serif;
+  --font-body: "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+  --space-1: 0.5rem;
+  --space-2: 0.75rem;
+  --space-3: 1rem;
+  --space-4: 1.5rem;
+  --space-5: 2rem;
+  --space-6: 3rem;
+  --space-7: 4.5rem;
+
+  --container-max: 1200px;
+  --radius-sm: 10px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --radius-pill: 999px;
+
+  --shadow-soft: 0 12px 36px rgba(7, 9, 13, 0.34);
+  --shadow-strong: 0 20px 60px rgba(2, 4, 8, 0.52);
+
+  --duration-fast: 180ms;
+  --duration-mid: 360ms;
+  --duration-slow: 700ms;
+  --ease-main: cubic-bezier(0.22, 0.61, 0.36, 1);
+  --ease-sharp: cubic-bezier(0.4, 0, 0.2, 1);
+
+  --hero-overlay: rgba(11, 28, 45, 0.66);
+  --hero-tint-a: rgba(224, 33, 138, 0.2);
+  --hero-tint-b: rgba(11, 28, 45, 0.78);
+}
