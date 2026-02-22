@@ -182,10 +182,15 @@
     }
 
     airportInputs.forEach((input) => {
+      if (input.readOnly) {
+        input.removeAttribute("list");
+        input.setAttribute("autocomplete", "off");
+        return;
+      }
       input.setAttribute("list", "airport-options-list");
       input.setAttribute("autocomplete", "off");
       input.setAttribute("spellcheck", "false");
-      input.placeholder = "Search airport";
+      if (!input.placeholder) input.placeholder = "Search airport";
     });
   };
 
@@ -557,7 +562,8 @@
         const params = new URLSearchParams({
           from: startForm.elements.from.value || "",
           to: startForm.elements.to.value || "",
-          departure_date: startForm.elements.departure_date.value || ""
+          departure_date: startForm.elements.departure_date.value || "",
+          source: "hero"
         });
         window.location.href = `booking.html?${params.toString()}`;
       });
@@ -628,7 +634,9 @@
 
     setDepartureMin(bookingStartForm);
     setDepartureMin(bookingForm);
-    showStep(query.get("from") || query.get("to") || query.get("departure_date") ? 2 : 1);
+    const shouldOpenStep2FromHero =
+      query.get("source") === "hero" && (query.get("from") || query.get("to") || query.get("departure_date"));
+    showStep(shouldOpenStep2FromHero ? 2 : 1);
 
     bookingStartForm.addEventListener("submit", (event) => {
       event.preventDefault();
@@ -644,6 +652,16 @@
 
     if (backBtn) {
       backBtn.addEventListener("click", () => {
+        copyBookingToStart();
+        clearErrors(bookingForm);
+        showStep(1);
+      });
+    }
+
+    const legacyBackLink = $('a[href="index.html#request-quote"]', bookingForm);
+    if (legacyBackLink) {
+      legacyBackLink.addEventListener("click", (event) => {
+        event.preventDefault();
         copyBookingToStart();
         clearErrors(bookingForm);
         showStep(1);
