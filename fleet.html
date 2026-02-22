@@ -1,175 +1,266 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/png" href="assets/icons/logo-square.png" />
-    <link rel="apple-touch-icon" href="assets/icons/logo-square.png" />
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fleet | British Flight Center</title>
-    <meta
-      name="description"
-      content="Passenger fleet options: ERJ145 for larger groups and Hawker 400XP for executive point-to-point missions."
-    />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="assets/css/tokens.css" />
-    <link rel="stylesheet" href="assets/css/base.css" />
-    <link rel="stylesheet" href="assets/css/components.css" />
-    <link rel="stylesheet" href="assets/css/animations.css" />
-    <script src="assets/js/site.js" defer></script>
-  </head>
-  <body>
-    <header class="site-header load-in">
-      <div class="container nav-wrap">
-        <a class="brand" href="index.html" aria-label="British Flight Center home">
-          <img class="brand-logo" src="assets/icons/logo-long.png" alt="British Flight Center" />
-        </a>
-        <button class="nav-toggle" type="button" data-nav-toggle aria-expanded="false" aria-controls="main-menu">
-          Menu
-        </button>
-        <ul class="nav-menu" id="main-menu" data-nav-menu>
-          <li><a class="nav-link" href="fleet.html">Fleet</a></li>
-          <li><a class="nav-link" href="index.html#destinations">Destinations</a></li>
-          <li><a class="nav-link" href="index.html#about">About</a></li>
-          <li><a class="nav-link" href="contact.html">Contact</a></li>
-          <li><a class="btn btn-primary btn-shimmer" href="booking.html">Request Quote</a></li>
-        </ul>
-      </div>
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+
+<body>
+
+    <header class="site-header" id="header">
+        <div class="container nav-wrap">
+            <a href="index.html" class="brand">
+                <img src="assets/images/logo.png" alt="British Flight Center" class="brand-logo brand-logo-full">
+            </a>
+
+            <button class="nav-burger" id="nav-burger" aria-label="Toggle menu" aria-expanded="false">
+                <span></span><span></span><span></span>
+            </button>
+            <ul class="nav-menu">
+                <li><a href="index.html#services" class="nav-link">Our Services</a></li>
+                <li><a href="fleet.html" class="nav-link">The Fleet</a></li>
+                <li><a href="index.html#experience" class="nav-link">Experience</a></li>
+                <li><a href="booking.html" class="btn btn-primary btn-shimmer">Request Quote</a></li>
+            </ul>
+        </div>
     </header>
 
+    <!-- Mobile Nav Overlay -->
+    <nav class="mobile-nav" id="mobile-nav" aria-hidden="true">
+        <ul class="mobile-nav-menu">
+            <li><a href="index.html#services" class="mobile-nav-link">Our Services</a></li>
+            <li><a href="fleet.html" class="mobile-nav-link">The Fleet</a></li>
+            <li><a href="index.html#experience" class="mobile-nav-link">Experience</a></li>
+            <li><a href="index.html#destinations" class="mobile-nav-link">Destinations</a></li>
+            <li><a href="contact.html" class="mobile-nav-link">Contact</a></li>
+            <li><a href="booking.html" class="mobile-nav-link mobile-nav-cta">Request Quote</a></li>
+        </ul>
+    </nav>
+
     <main>
-      <section class="page-header">
-        <div class="container reveal">
-          <span class="kicker">Passenger Fleet</span>
-          <h1 class="mask-reveal">Mission-Matched Aircraft for Group and Executive Travel</h1>
-          <p>
-            We currently position two passenger aircraft options: the ERJ145 for high-capacity movements and the Hawker
-            400XP for faster executive trips.
-          </p>
-        </div>
-      </section>
+        <!-- Page Header — matches home hero bg treatment -->
+        <section class="page-header" style="position: relative; overflow: hidden;">
 
-      <section class="section">
-        <div class="container fleet-stack">
-          <article class="surface fleet-aircraft-card reveal">
-            <div class="fleet-aircraft-media">
-              <img
-                class="fleet-media"
-                src="assets/media/fleet/erj145/hero.jpg"
-                alt="ERJ145 aircraft in passenger livery"
-                loading="lazy"
-              />
-              <img
-                class="fleet-media"
-                src="assets/media/fleet/erj145/profile.jpg"
-                alt="ERJ145 side profile on runway"
-                loading="lazy"
-              />
+            <!-- ✈ Flying aircraft animation (mirrors home hero) -->
+            <div class="hero-aircraft-wrap" aria-hidden="true">
+                <svg class="hero-contrail" viewBox="0 0 900 40" xmlns="http://www.w3.org/2000/svg"
+                    preserveAspectRatio="none">
+                    <defs>
+                        <linearGradient id="contrail-grad-f" x1="0%" y1="0%" x2="100%" y2="0%">
+                            <stop offset="0%" stop-color="#D4AF37" stop-opacity="0" />
+                            <stop offset="40%" stop-color="#D4AF37" stop-opacity="0.18" />
+                            <stop offset="100%" stop-color="#D4AF37" stop-opacity="0.55" />
+                        </linearGradient>
+                    </defs>
+                    <path d="M0,20 Q450,5 900,20" stroke="url(#contrail-grad-f)" stroke-width="2.5" fill="none"
+                        stroke-linecap="round" />
+                    <path d="M0,22 Q450,8 900,22" stroke="url(#contrail-grad-f)" stroke-width="1.2" fill="none"
+                        stroke-linecap="round" opacity="0.5" />
+                </svg>
+                <div class="hero-aircraft">
+                    <div class="hero-aircraft-inner">
+                        <svg viewBox="0 0 160 80" xmlns="http://www.w3.org/2000/svg" width="200" height="100">
+                            <defs>
+                                <radialGradient id="engine-glow-f" cx="78%" cy="50%" r="28%">
+                                    <stop offset="0%" stop-color="#D4AF37" stop-opacity="0.85" />
+                                    <stop offset="100%" stop-color="#D4AF37" stop-opacity="0" />
+                                </radialGradient>
+                                <filter id="jet-glow-f" x="-15%" y="-40%" width="130%" height="180%">
+                                    <feGaussianBlur stdDeviation="1.4" result="blur" />
+                                    <feMerge>
+                                        <feMergeNode in="blur" />
+                                        <feMergeNode in="SourceGraphic" />
+                                    </feMerge>
+                                </filter>
+                            </defs>
+                            <!-- Engine exhaust glow at tail -->
+                            <ellipse cx="132" cy="40" rx="18" ry="6" fill="url(#engine-glow-f)" />
+                            <!-- Fuselage (Boeing wide-body tube) -->
+                            <path d="M 14,36 Q 28,33 85,35 Q 118,36.5 138,40 Q 118,43.5 85,45 Q 28,47 14,44 Z"
+                                fill="#D4AF37" filter="url(#jet-glow-f)" />
+                            <!-- Rounded nose -->
+                            <path d="M 7,40 Q 10,36 14,36 L 14,44 Q 10,44 7,40 Z" fill="#f5d773" />
+                            <!-- Main wings (large swept, mid-body) -->
+                            <path d="M 56,35.5 L 20,6  L 34,4  L 68,36 Z" fill="#c9a92e" opacity="0.95" />
+                            <path d="M 56,44.5 L 20,74 L 34,76 L 68,44 Z" fill="#c9a92e" opacity="0.95" />
+                            <!-- Wing leading-edge sheen -->
+                            <path d="M 56,35.5 L 22,8  L 28,7  L 62,36 Z" fill="#f5d773" opacity="0.28" />
+                            <!-- Underwing engine pods -->
+                            <ellipse cx="40" cy="18" rx="13" ry="3.5" fill="#aa8620" opacity="0.92" />
+                            <ellipse cx="40" cy="18" rx="10" ry="2.2" fill="#c9a92e" opacity="0.6" />
+                            <ellipse cx="40" cy="62" rx="13" ry="3.5" fill="#aa8620" opacity="0.92" />
+                            <ellipse cx="40" cy="62" rx="10" ry="2.2" fill="#c9a92e" opacity="0.6" />
+                            <!-- Horizontal stabilisers -->
+                            <path d="M 118,37 L 102,23 L 109,22 L 126,37.5 Z" fill="#aa8620" opacity="0.9" />
+                            <path d="M 118,43 L 102,57 L 109,58 L 126,42.5 Z" fill="#aa8620" opacity="0.9" />
+                            <!-- Vertical fin -->
+                            <path d="M 122,40 L 114,26 L 119,25 L 130,40 Z" fill="#b8982a" opacity="0.8" />
+                            <!-- Cockpit windows -->
+                            <ellipse cx="22" cy="39" rx="5" ry="1.8" fill="#fcf9f2" opacity="0.45" />
+                            <ellipse cx="22" cy="41" rx="4" ry="1.4" fill="#fcf9f2" opacity="0.25" />
+                            <!-- Engine exhaust nozzle dots -->
+                            <circle cx="136" cy="38" r="2" fill="#f5d773" opacity="0.8" />
+                            <circle cx="136" cy="42" r="2" fill="#f5d773" opacity="0.8" />
+                        </svg>
+                    </div>
+                </div>
             </div>
-            <div class="fleet-aircraft-copy">
-              <span class="kicker">Regional Airliner</span>
-              <h2 class="section-title" style="font-size: clamp(1.7rem, 3.1vw, 2.3rem)">ERJ145</h2>
-              <p>
-                The ERJ145 is configured as a 60-seat passenger platform in your operation profile, making it suitable
-                for larger group movements where capacity and schedule control matter more than private-cabin luxury.
-              </p>
-              <ul class="metric-list">
-                <li><span>Passenger Configuration</span><strong>60 seats</strong></li>
-                <li><span>Best For</span><strong>Group transport and shuttle-style missions</strong></li>
-                <li><span>Strength</span><strong>Lower per-seat cost at higher loads</strong></li>
-                <li><span>Usage Profile</span><strong>Corporate groups, sports teams, event travel</strong></li>
-              </ul>
-              <h3 class="fleet-mini-title">Operational Advantages</h3>
-              <ul class="fleet-bullets">
-                <li>Efficient for moving medium-to-large passenger groups on one aircraft.</li>
-                <li>Airliner-style cabin and baggage profile compared with small business jets.</li>
-                <li>Strong fit for repeat corridors and planned group logistics.</li>
-              </ul>
-            </div>
-          </article>
 
-          <article class="surface fleet-aircraft-card reveal">
-            <div class="fleet-aircraft-media">
-              <img
-                class="fleet-media"
-                src="assets/media/fleet/hawker-400xp/hero.jpg"
-                alt="Hawker 400XP on airport apron"
-                loading="lazy"
-              />
-              <img
-                class="fleet-media"
-                src="assets/media/fleet/hawker-400xp/profile.jpg"
-                alt="Hawker 400XP in flight profile"
-                loading="lazy"
-              />
+            <!-- Second aircraft pass — staggered -->
+            <div class="hero-aircraft-wrap hero-aircraft-wrap-2" aria-hidden="true">
+                <svg class="hero-contrail" viewBox="0 0 900 40" xmlns="http://www.w3.org/2000/svg"
+                    preserveAspectRatio="none">
+                    <defs>
+                        <linearGradient id="contrail-grad-f2" x1="0%" y1="0%" x2="100%" y2="0%">
+                            <stop offset="0%" stop-color="#D4AF37" stop-opacity="0" />
+                            <stop offset="40%" stop-color="#D4AF37" stop-opacity="0.14" />
+                            <stop offset="100%" stop-color="#D4AF37" stop-opacity="0.45" />
+                        </linearGradient>
+                    </defs>
+                    <path d="M0,20 Q450,5 900,20" stroke="url(#contrail-grad-f2)" stroke-width="2" fill="none"
+                        stroke-linecap="round" />
+                </svg>
+                <div class="hero-aircraft hero-aircraft-sm">
+                    <div class="hero-aircraft-inner">
+                        <svg viewBox="0 0 160 80" xmlns="http://www.w3.org/2000/svg" width="150" height="75">
+                            <ellipse cx="132" cy="40" rx="16" ry="5" fill="url(#engine-glow-f)" />
+                            <path d="M 14,36 Q 28,33 85,35 Q 118,36.5 138,40 Q 118,43.5 85,45 Q 28,47 14,44 Z"
+                                fill="#D4AF37" />
+                            <path d="M 7,40 Q 10,36 14,36 L 14,44 Q 10,44 7,40 Z" fill="#f5d773" />
+                            <path d="M 56,35.5 L 20,6  L 34,4  L 68,36 Z" fill="#c9a92e" opacity="0.9" />
+                            <path d="M 56,44.5 L 20,74 L 34,76 L 68,44 Z" fill="#c9a92e" opacity="0.9" />
+                            <ellipse cx="40" cy="18" rx="12" ry="3" fill="#aa8620" opacity="0.88" />
+                            <ellipse cx="40" cy="62" rx="12" ry="3" fill="#aa8620" opacity="0.88" />
+                            <path d="M 118,37 L 102,23 L 109,22 L 126,37.5 Z" fill="#aa8620" opacity="0.88" />
+                            <path d="M 118,43 L 102,57 L 109,58 L 126,42.5 Z" fill="#aa8620" opacity="0.88" />
+                            <path d="M 122,40 L 114,26 L 119,25 L 130,40 Z" fill="#b8982a" opacity="0.75" />
+                        </svg>
+                    </div>
+                </div>
             </div>
-            <div class="fleet-aircraft-copy">
-              <span class="kicker">Light Executive Jet</span>
-              <h2 class="section-title" style="font-size: clamp(1.7rem, 3.1vw, 2.3rem)">Hawker Jet 400XP</h2>
-              <p>
-                The Hawker 400XP is configured for 7 executive seats and is optimized for private, time-critical
-                missions where speed, privacy, and fast ground turnaround are the priority.
-              </p>
-              <ul class="metric-list">
-                <li><span>Passenger Configuration</span><strong>7 executive seats</strong></li>
-                <li><span>Best For</span><strong>Senior leadership and VIP travel</strong></li>
-                <li><span>Strength</span><strong>Fast dispatch for smaller passenger loads</strong></li>
-                <li><span>Usage Profile</span><strong>Executive day returns and urgent meetings</strong></li>
-              </ul>
-              <h3 class="fleet-mini-title">Operational Advantages</h3>
-              <ul class="fleet-bullets">
-                <li>Higher privacy and premium cabin experience for leadership-level passengers.</li>
-                <li>Very strong for short-notice movements with minimal boarding complexity.</li>
-                <li>More flexible for smaller party missions than airliner-class aircraft.</li>
-              </ul>
-            </div>
-          </article>
-        </div>
-      </section>
 
-      <section class="section bg-light">
-        <div class="container reveal">
-          <span class="kicker" style="color: var(--color-primary)">Usage Comparison</span>
-          <h2 class="section-title">Which Aircraft Fits the Mission</h2>
-          <div class="grid grid-2" style="margin-top: 1rem">
-            <article class="card">
-              <h3 style="font-size: 1.45rem">Choose ERJ145 When</h3>
-              <ul class="fleet-bullets fleet-bullets-dark">
-                <li>You need to move larger groups on one rotation.</li>
-                <li>You want better seat economics for high passenger counts.</li>
-                <li>Your mission is schedule-reliable group transport.</li>
-              </ul>
-            </article>
-            <article class="card">
-              <h3 style="font-size: 1.45rem">Choose Hawker 400XP When</h3>
-              <ul class="fleet-bullets fleet-bullets-dark">
-                <li>You need a dedicated executive platform for small groups.</li>
-                <li>You prioritize privacy, speed, and direct business mobility.</li>
-                <li>Your mission is high-priority point-to-point travel.</li>
-              </ul>
-            </article>
-          </div>
-          <p class="section-subtitle" style="margin-top: 1.2rem">
-            Need acquisition support instead of charter? See our <a href="inspections.html" style="color: var(--color-primary); font-weight: 700">inspection advisory services</a>.
-          </p>
-        </div>
-      </section>
+            <div class="container reveal">
+                <span class="kicker">Passenger Fleet</span>
+                <h1>Mission-Matched Aircraft</h1>
+                <p>We currently position two passenger aircraft options: the ERJ145 for high-capacity movements and the
+                    Hawker 400XP for faster executive trips.</p>
+            </div>
+        </section>
+
+        <!-- ERJ145 Section — matches "Experience" section (radial eflatun left, borders) -->
+        <section class="section"
+            style="background: radial-gradient(circle at center left, var(--color-bg-eflatun-deep) 0%, var(--color-bg-dark) 80%); border-top: 1px solid var(--color-primary-alpha-10); border-bottom: 1px solid var(--color-primary-alpha-10);">
+            <div class="container split-section">
+                <!-- Image block with split-image animation (same as home "Experience" section) -->
+                <div class="split-image reveal">
+                    <div class="fleet-aircraft-media-stack">
+                        <img class="fleet-media" src="assets/media/fleet/erj145/hero.jpg" alt="ERJ145 aircraft"
+                            loading="lazy" />
+                        <img class="fleet-media fleet-media-secondary" src="assets/media/fleet/erj145/profile.jpg"
+                            alt="ERJ145 side profile" loading="lazy" />
+                    </div>
+                </div>
+                <!-- Content block -->
+                <div class="reveal">
+                    <span class="kicker">Regional Airliner</span>
+                    <h2 style="font-size: 2rem; margin-bottom: 1rem; color: var(--color-primary);">ERJ145</h2>
+                    <p style="color: var(--color-text-muted); margin-bottom: 1.5rem; font-size: 1.1rem;">
+                        The ERJ145 is configured as a 60-seat passenger platform, making it suitable for larger
+                        group movements where capacity and schedule control matter.
+                    </p>
+                    <ul class="metric-list">
+                        <li><span>Configuration</span><strong>60 seats</strong></li>
+                        <li><span>Best For</span><strong>Group transport missions</strong></li>
+                        <li><span>Strength</span><strong>Lower per-seat cost</strong></li>
+                    </ul>
+                    <h3 class="fleet-mini-title" style="color: var(--color-text-main); margin-top: 2rem;">Operational
+                        Advantages</h3>
+                    <ul class="fleet-bullets">
+                        <li>Efficient for moving medium-to-large passenger groups.</li>
+                        <li>Airliner-style cabin and baggage profile.</li>
+                        <li>Strong fit for repeat corridors and planned logistics.</li>
+                    </ul>
+                    <a href="booking.html" class="btn btn-primary btn-shimmer" style="margin-top: 2rem;">Request a
+                        Quote</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Hawker 400XP Section — matches "About" section (radial eflatun right, borders) -->
+        <section class="section"
+            style="background: radial-gradient(circle at center right, var(--color-bg-eflatun-deep) 0%, var(--color-bg-dark) 80%); border-top: 1px solid var(--color-primary-alpha-10); border-bottom: 1px solid var(--color-primary-alpha-10);">
+            <div class="container split-section split-section-reverse">
+                <!-- Content block (left on desktop) -->
+                <div class="reveal">
+                    <span class="kicker">Light Executive Jet</span>
+                    <h2 style="font-size: 2rem; margin-bottom: 1rem; color: var(--color-primary);">Hawker Jet 400XP</h2>
+                    <p style="color: var(--color-text-muted); margin-bottom: 1.5rem; font-size: 1.1rem;">
+                        The Hawker 400XP is configured for 7 executive seats and is optimized for private,
+                        time-critical missions prioritising privacy and speed.
+                    </p>
+                    <ul class="metric-list">
+                        <li><span>Configuration</span><strong>7 executive seats</strong></li>
+                        <li><span>Best For</span><strong>Senior leadership travel</strong></li>
+                        <li><span>Strength</span><strong>Fast dispatch</strong></li>
+                    </ul>
+                    <h3 class="fleet-mini-title" style="color: var(--color-text-main); margin-top: 2rem;">Operational
+                        Advantages</h3>
+                    <ul class="fleet-bullets">
+                        <li>Higher privacy and premium cabin experience.</li>
+                        <li>Very strong for short-notice movements.</li>
+                        <li>Flexible for smaller party missions.</li>
+                    </ul>
+                    <a href="booking.html" class="btn btn-primary btn-shimmer" style="margin-top: 2rem;">Request a
+                        Quote</a>
+                </div>
+                <!-- Image block with split-image animation -->
+                <div class="split-image reveal">
+                    <div class="fleet-aircraft-media-stack">
+                        <img class="fleet-media" src="assets/media/fleet/hawker-400xp/hero.jpg" alt="Hawker 400XP"
+                            loading="lazy" />
+                        <img class="fleet-media fleet-media-secondary" src="assets/media/fleet/hawker-400xp/profile.jpg"
+                            alt="Hawker 400XP profile" loading="lazy" />
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section — matches "Contact" section (radial center, eflatun border) -->
+        <section class="section"
+            style="background: radial-gradient(circle at center, var(--color-bg-eflatun-deep) 0%, var(--color-bg-dark) 70%); border-top: 1px solid var(--color-eflatun-alpha-30);">
+            <div class="container" style="text-align: center; max-width: 800px;">
+                <span class="kicker reveal">Charter Now</span>
+                <h2 class="section-title reveal">Ready to Select Your Aircraft?</h2>
+                <p class="section-subtitle reveal" style="margin: 0 auto 3rem auto;">
+                    Our aviation specialists are available 24/7 to match the right aircraft to your mission and arrange
+                    everything from start to finish.
+                </p>
+                <a href="booking.html" class="btn btn-primary btn-shimmer reveal" style="margin-right: 1rem;">Request
+                    Quote</a>
+                <a href="contact.html" class="btn btn-outline reveal">Contact Desk</a>
+            </div>
+        </section>
     </main>
 
-    <footer class="site-footer">
-      <div class="container footer-row">
-        <p>&copy; <span id="year">2026</span> British Flight Center. All rights reserved.</p>
-        <p>Fleet options updated for ERJ145 and Hawker 400XP.</p>
-        <img class="footer-mark" src="assets/icons/logo-square.png" alt="British Flight Center mark" loading="lazy" />
-      </div>
+    <footer>
+        <div class="container">
+            <img src="assets/images/logo.png" alt="BFC Logo" class="footer-logo footer-logo-full">
+            <p class="footer-copy">&copy; 2026 British Flight Center. Redefined Luxury Aviation. All rights reserved.
+            </p>
+        </div>
     </footer>
 
-    <script>
-      document.getElementById("year").textContent = String(new Date().getFullYear());
-    </script>
-  </body>
+    <script src="js/main.js"></script>
+</body>
+
 </html>

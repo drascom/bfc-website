@@ -1,136 +1,216 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/png" href="assets/icons/logo-square.png" />
-    <link rel="apple-touch-icon" href="assets/icons/logo-square.png" />
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Aircraft Inspection Services | British Flight Center</title>
-    <meta
-      name="description"
-      content="Initial and pre-buy aircraft inspection support with expert advisory for private and business jet acquisitions."
-    />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="assets/css/tokens.css" />
-    <link rel="stylesheet" href="assets/css/base.css" />
-    <link rel="stylesheet" href="assets/css/components.css" />
-    <link rel="stylesheet" href="assets/css/animations.css" />
-    <script src="assets/js/site.js" defer></script>
-  </head>
-  <body>
-    <header class="site-header load-in">
-      <div class="container nav-wrap">
-        <a class="brand" href="index.html" aria-label="British Flight Center home">
-          <img class="brand-logo" src="assets/icons/logo-long.png" alt="British Flight Center" />
-        </a>
-        <button class="nav-toggle" type="button" data-nav-toggle aria-expanded="false" aria-controls="main-menu">
-          Menu
-        </button>
-        <ul class="nav-menu" id="main-menu" data-nav-menu>
-          <li><a class="nav-link" href="fleet.html">Fleet</a></li>
-          <li><a class="nav-link" href="index.html#destinations">Destinations</a></li>
-          <li><a class="nav-link" href="index.html#about">About</a></li>
-          <li><a class="nav-link" href="contact.html">Contact</a></li>
-          <li><a class="btn btn-primary btn-shimmer" href="booking.html">Request Quote</a></li>
-        </ul>
-      </div>
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="assets/css/style.css">
+
+    <style>
+        .aircraft-card {
+            padding: 2.5rem 1.5rem;
+            border-radius: 8px;
+            border: 1px solid var(--color-primary-alpha-10);
+            background: var(--color-bg-card-glass);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            text-align: center;
+            transition: var(--transition-smooth);
+            cursor: default;
+        }
+
+        .aircraft-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+            border-color: rgba(212, 175, 55, 0.4);
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="site-header" id="header">
+        <div class="container nav-wrap">
+            <a href="index.html" class="brand">
+                <img src="assets/images/logo.png" alt="British Flight Center" class="brand-logo brand-logo-full">
+            </a>
+
+            <button class="nav-burger" id="nav-burger" aria-label="Toggle menu" aria-expanded="false">
+                <span></span><span></span><span></span>
+            </button>
+            <ul class="nav-menu">
+                <li><a href="index.html#services" class="nav-link">Our Services</a></li>
+                <li><a href="fleet.html" class="nav-link">The Fleet</a></li>
+                <li><a href="index.html#experience" class="nav-link">Experience</a></li>
+                <li><a href="booking.html" class="btn btn-primary btn-shimmer">Request Quote</a></li>
+            </ul>
+        </div>
     </header>
 
     <main>
-      <section class="page-header">
-        <div class="container reveal">
-          <span class="kicker">Aircraft Advisory</span>
-          <h1 class="mask-reveal">Initial Inspection &amp; Pre-Buy Inspection</h1>
-          <p>
-            If you plan to acquire a jet, our technical advisory team can perform structured initial inspection and
-            pre-buy inspection support before you commit.
-          </p>
-        </div>
-      </section>
+        <section class="page-header"
+            style="background: linear-gradient(var(--color-bg-glass-strong), var(--color-bg-glass-heavy)), url('assets/media/fleet-jet-1.jpg') center/cover; padding: 12rem 0 6rem; border-bottom: none;">
+            <div class="container reveal">
+                <span class="kicker"
+                    style="color: var(--color-text-main); text-shadow: 0 2px 4px var(--color-bg-black-alpha-50);">Aircraft
+                    Advisory</span>
+                <h1 style="text-shadow: 0 4px 10px var(--color-bg-black-alpha-50);">Aircraft Inspection &amp; Due
+                    Diligence</h1>
+                <p style="color: #fcf9f2; text-shadow: 0 2px 6px var(--color-shadow-strong);">If you plan to acquire a
+                    jet, our
+                    technical advisory team can perform structured initial inspection and pre-buy inspection support
+                    before you commit.</p>
+            </div>
+        </section>
 
-      <section class="section">
-        <div class="container grid" style="gap: 2rem">
-          <article class="surface reveal" style="padding: 1.4rem">
-            <span class="kicker">Phase 01</span>
-            <h2 class="section-title" style="font-size: 2rem">Initial Inspection</h2>
-            <p>
-              Early-stage technical screening to quickly identify red flags before deeper due diligence costs are
-              committed.
-            </p>
-            <ul class="metric-list">
-              <li><span>Records Snapshot</span><strong>Airframe / engine log review</strong></li>
-              <li><span>Configuration Check</span><strong>Cabin + avionics status</strong></li>
-              <li><span>Maintenance Signals</span><strong>Upcoming major events</strong></li>
-              <li><span>Outcome</span><strong>Go / no-go advisory note</strong></li>
-            </ul>
-          </article>
+        <section class="section" style="padding-top: 4rem;">
+            <div class="container">
 
-          <article class="surface reveal" style="padding: 1.4rem">
-            <span class="kicker">Phase 02</span>
-            <h2 class="section-title" style="font-size: 2rem">Pre-Buy &amp; Pre-Acquisition Inspection</h2>
-            <p>
-              Deep technical and commercial advisory before purchase, including independent review support with your
-              legal and transaction team.
-            </p>
-            <ul class="metric-list">
-              <li><span>Physical Survey</span><strong>Airframe, engines, systems, interior</strong></li>
-              <li><span>Compliance Review</span><strong>AD/SB, maintenance status, traceability</strong></li>
-              <li><span>Cost Forecast</span><strong>Near-term maintenance exposure</strong></li>
-              <li><span>Outcome</span><strong>Negotiation-ready technical report</strong></li>
-            </ul>
-          </article>
+                <!-- Phase 1 -->
+                <div class="split-section" style="margin-bottom: 8rem;">
+                    <div class="split-image reveal">
+                        <img src="assets/media/service-vip.jpg" alt="Initial Inspection">
+                    </div>
+                    <div class="split-content reveal">
+                        <span class="kicker">Phase 01</span>
+                        <h2 class="section-title" style="font-size: 2.5rem;">Initial Inspection</h2>
+                        <p style="color: var(--color-text-muted); font-size: 1.1rem; margin-bottom: 2rem;">Early-stage
+                            technical screening to quickly identify red flags before deeper due diligence costs are
+                            committed.</p>
+                        <ul class="metric-list" style="margin-top: 1.5rem;">
+                            <li><span>Records Snapshot</span><strong style="text-align: right;">Airframe &amp; Engine
+                                    Log Review</strong></li>
+                            <li><span>Configuration Check</span><strong style="text-align: right;">Cabin &amp; Avionics
+                                    Status</strong></li>
+                            <li><span>Maintenance Signals</span><strong style="text-align: right;">Upcoming Major
+                                    Events</strong></li>
+                            <li><span style="color: var(--color-primary);">Outcome</span><strong
+                                    style="color: var(--color-primary); text-align: right;">Go / No-Go Advisory
+                                    Note</strong></li>
+                        </ul>
+                    </div>
+                </div>
 
-          <article class="surface reveal" style="padding: 1.4rem">
-            <span class="kicker">Covered Aircraft</span>
-            <h2 class="section-title" style="font-size: 2rem">Inspection List</h2>
-            <p>
-              We currently support technical advisory and pre-buy inspection workflows for the following aircraft
-              types:
-            </p>
-            <ul class="metric-list">
-              <li><span>Airbus</span><strong>A340-600</strong></li>
-              <li><span>Airbus</span><strong>A310</strong></li>
-              <li><span>Airbus</span><strong>A300</strong></li>
-              <li><span>Boeing</span><strong>747-400</strong></li>
-              <li><span>BAe</span><strong>146-300</strong></li>
-              <li><span>Cessna CitationJet</span><strong>CJ2</strong></li>
-              <li><span>Hawker</span><strong>400XP</strong></li>
-            </ul>
-            <p style="margin-top: 1rem">
-              <a class="btn btn-primary btn-shimmer" href="contact.html">Request Expert Inspection Advice</a>
-            </p>
-          </article>
-        </div>
-      </section>
+                <!-- Phase 2 -->
+                <div class="split-section" style="direction: rtl;">
+                    <div class="split-image reveal" style="direction: ltr;">
+                        <img src="assets/media/fleet-jet-2.jpg" alt="Pre-Buy Inspection">
+                    </div>
+                    <div class="split-content reveal" style="direction: ltr;">
+                        <span class="kicker">Phase 02</span>
+                        <h2 class="section-title" style="font-size: 2.5rem;">Pre-Acquisition Review</h2>
+                        <p style="color: var(--color-text-muted); font-size: 1.1rem; margin-bottom: 2rem;">Deep
+                            technical and commercial advisory before purchase, including independent review support with
+                            your legal and transaction team.</p>
+                        <ul class="metric-list" style="margin-top: 1.5rem;">
+                            <li><span>Physical Survey</span><strong style="text-align: right;">Airframe, Engines,
+                                    Systems, Interior</strong></li>
+                            <li><span>Compliance Review</span><strong style="text-align: right;">AD/SB,
+                                    Traceability</strong></li>
+                            <li><span>Cost Forecast</span><strong style="text-align: right;">Near-Term Maintenance
+                                    Exposure</strong></li>
+                            <li><span style="color: var(--color-primary);">Outcome</span><strong
+                                    style="color: var(--color-primary); text-align: right;">Negotiation-Ready Technical
+                                    Report</strong></li>
+                        </ul>
+                    </div>
+                </div>
 
-      <section class="cta-band">
-        <div class="container grid grid-2 reveal" style="align-items: center">
-          <div>
-            <h2 class="section-title" style="margin-bottom: 0.8rem">Need Independent Buying Support?</h2>
-            <p>Send aircraft details and transaction timeline. We will propose an inspection scope and advisory plan.</p>
-          </div>
-          <div style="display: flex; justify-content: flex-end">
-            <a class="btn btn-primary btn-shimmer" href="contact.html">Start Inspection Request</a>
-          </div>
-        </div>
-      </section>
+            </div>
+        </section>
+
+        <section class="section"
+            style="background: var(--color-bg-panel-light); border-top: 1px solid var(--color-primary-alpha-10); border-bottom: 1px solid var(--color-primary-alpha-10);">
+            <div class="container reveal" style="text-align: center; margin-bottom: 4rem;">
+                <span class="kicker">Covered Aircraft</span>
+                <h2 class="section-title">Supported Inspection Types</h2>
+                <p class="section-subtitle" style="margin: 0 auto;">We currently support technical advisory and pre-buy
+                    inspection workflows for the following aircraft.</p>
+            </div>
+
+            <div class="container grid reveal"
+                style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem;">
+                <article class="aircraft-card">
+                    <h3 style="color: var(--color-primary); margin-bottom: 0.5rem; font-size: 1.5rem;">Airbus</h3>
+                    <p style="color: var(--color-text-muted);">A340-600, A310, A300</p>
+                </article>
+                <article class="aircraft-card">
+                    <h3 style="color: var(--color-primary); margin-bottom: 0.5rem; font-size: 1.5rem;">Boeing</h3>
+                    <p style="color: var(--color-text-muted);">747-400</p>
+                </article>
+                <article class="aircraft-card">
+                    <h3 style="color: var(--color-primary); margin-bottom: 0.5rem; font-size: 1.5rem;">BAe</h3>
+                    <p style="color: var(--color-text-muted);">146-300</p>
+                </article>
+                <article class="aircraft-card">
+                    <h3 style="color: var(--color-primary); margin-bottom: 0.5rem; font-size: 1.5rem;">Cessna</h3>
+                    <p style="color: var(--color-text-muted);">CitationJet CJ2</p>
+                </article>
+                <article class="aircraft-card">
+                    <h3 style="color: var(--color-primary); margin-bottom: 0.5rem; font-size: 1.5rem;">Hawker</h3>
+                    <p style="color: var(--color-text-muted);">400XP</p>
+                </article>
+            </div>
+        </section>
+
+        <section class="section" style="background: var(--color-bg-dark);">
+            <div class="container">
+                <div class="quote-card glass reveal"
+                    style="text-align: center; max-width: 900px; margin: 0 auto; animation: none; transform: translateY(0); opacity: 1;">
+                    <h2 class="section-title"
+                        style="margin-bottom: 0.8rem; font-size: 2.2rem; background: linear-gradient(to bottom, #ffffff, var(--color-primary)); background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+                        Need Independent Buying Support?</h2>
+                    <p
+                        style="color: var(--color-text-muted); margin-bottom: 2.5rem; font-size: 1.1rem; max-width: 600px; margin-left: auto; margin-right: auto;">
+                        Send aircraft details and your transaction timeline. Our advisory team will propose an
+                        inspection scope and plan tailored to your needs.</p>
+                    <a class="btn btn-primary btn-shimmer" href="contact.html">Start Inspection Request</a>
+                </div>
+            </div>
+        </section>
     </main>
 
-    <footer class="site-footer">
-      <div class="container footer-row">
-        <p>&copy; <span id="year">2026</span> British Flight Center. All rights reserved.</p>
-        <p>Inspection advisory is provided as expert guidance alongside buyer due diligence.</p>
-        <img class="footer-mark" src="assets/icons/logo-square.png" alt="British Flight Center mark" loading="lazy" />
-      </div>
+    <footer>
+        <div class="container">
+            <img src="assets/images/logo.png" alt="BFC Logo" class="footer-logo footer-logo-full">
+            <p class="footer-copy">&copy; 2026 British Flight Center. Redefined Luxury Aviation. All rights reserved.
+                <br><span style="font-size: 0.8em; opacity: 0.7;">Inspection advisory is provided as expert guidance
+                    alongside buyer due diligence.</span>
+            </p>
+        </div>
     </footer>
 
+    <script src="js/main.js"></script>
+
     <script>
-      document.getElementById("year").textContent = String(new Date().getFullYear());
+        // Observe elements that are static initially but need reveal class
+        document.addEventListener('DOMContentLoaded', () => {
+            const staticReveals = document.querySelectorAll('.quote-card');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                    }
+                });
+            }, { threshold: 0.1, rootMargin: "0px 0px -50px 0px" });
+
+            staticReveals.forEach((el) => {
+                // Remove inline styles that override animation
+                el.style.animation = '';
+                el.style.transform = '';
+                el.style.opacity = '';
+                observer.observe(el);
+            });
+        });
     </script>
-  </body>
+</body>
+
 </html>

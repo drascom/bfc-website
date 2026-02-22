@@ -1,208 +1,231 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/png" href="assets/icons/logo-square.png" />
-    <link rel="apple-touch-icon" href="assets/icons/logo-square.png" />
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Booking Request | British Flight Center</title>
-    <meta name="description" content="Complete your private charter booking details and submit your request." />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-    <link rel="stylesheet" href="assets/css/tokens.css" />
-    <link rel="stylesheet" href="assets/css/base.css" />
-    <link rel="stylesheet" href="assets/css/components.css" />
-    <link rel="stylesheet" href="assets/css/animations.css" />
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" defer></script>
-    <script src="https://cdn.jsdelivr.net/npm/leaflet-ant-path@1.3.0/dist/leaflet-ant-path.min.js" defer></script>
-    <script src="assets/js/site.js" defer></script>
-  </head>
-  <body>
-    <header class="site-header load-in">
-      <div class="container nav-wrap">
-        <a class="brand" href="index.html" aria-label="British Flight Center home">
-          <img class="brand-logo" src="assets/icons/logo-long.png" alt="British Flight Center" />
-        </a>
-        <button class="nav-toggle" type="button" data-nav-toggle aria-expanded="false" aria-controls="main-menu">
-          Menu
-        </button>
-        <ul class="nav-menu" id="main-menu" data-nav-menu>
-          <li><a class="nav-link" href="fleet.html">Fleet</a></li>
-          <li><a class="nav-link" href="index.html#destinations">Destinations</a></li>
-          <li><a class="nav-link" href="index.html#about">About</a></li>
-          <li><a class="nav-link" href="contact.html">Contact</a></li>
-          <li><a class="btn btn-primary btn-shimmer" href="booking.html">Request Quote</a></li>
-        </ul>
-      </div>
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+
+<body>
+
+    <header class="site-header" id="header">
+        <div class="container nav-wrap">
+            <a href="index.html" class="brand">
+                <img src="assets/images/logo.png" alt="British Flight Center" class="brand-logo brand-logo-full">
+            </a>
+
+            <button class="nav-burger" id="nav-burger" aria-label="Toggle menu" aria-expanded="false">
+                <span></span><span></span><span></span>
+            </button>
+            <ul class="nav-menu">
+                <li><a href="index.html#services" class="nav-link">Our Services</a></li>
+                <li><a href="fleet.html" class="nav-link">The Fleet</a></li>
+                <li><a href="index.html#experience" class="nav-link">Experience</a></li>
+                <li><a href="booking.html" class="btn btn-primary btn-shimmer">Request Quote</a></li>
+            </ul>
+        </div>
     </header>
 
+    <!-- Mobile Navigation Overlay -->
+    <nav class="mobile-nav" id="mobile-nav" aria-hidden="true" aria-label="Mobile navigation">
+        <ul class="mobile-nav-menu">
+            <li><a href="index.html#services" class="mobile-nav-link">Our Services</a></li>
+            <li><a href="fleet.html" class="mobile-nav-link">The Fleet</a></li>
+            <li><a href="index.html#experience" class="mobile-nav-link">Experience</a></li>
+            <li><a href="booking.html" class="mobile-nav-link mobile-nav-cta">Request Quote</a></li>
+        </ul>
+    </nav>
+
     <main>
-      <section class="page-header">
-        <div class="container reveal">
-          <span class="kicker">Booking</span>
-          <h1 class="mask-reveal">Complete Your Flight Request</h1>
-          <p>Complete step 1, then review and finalize your request details.</p>
-        </div>
-      </section>
+        <section class="page-header" style="border-bottom: none; padding-bottom: 4rem;">
+            <div class="container reveal">
+                <span class="kicker">Booking</span>
+                <h1 style="margin-bottom: 3rem;">Complete Your Flight Request</h1>
 
-      <section class="section">
-        <div class="container" style="max-width: 860px">
-          <article class="quote-card glass reveal">
-            <h2 class="section-title" style="font-size: 1.7rem">Request a Quote</h2>
-            <div class="quote-stepper" aria-label="Booking steps">
-              <span class="quote-step is-active" data-step-indicator="1">1. Travel Details</span>
-              <span class="quote-step" data-step-indicator="2">2. Contact Information</span>
-              <span class="quote-step" data-step-indicator="3">3. Confirmation</span>
+                <div style="max-width: 860px; margin: 0 auto; text-align: left;">
+                    <article class="quote-card glass">
+                        <h2 style="font-size: 1.7rem; margin-bottom: 2rem; color: var(--color-text-main);">Request a
+                            Quote
+                        </h2>
+                        <div class="quote-stepper" aria-label="Booking steps">
+                            <span class="quote-step is-active" data-step-indicator="1">1. Travel Details</span>
+                            <span class="quote-step" data-step-indicator="2">2. Contact Info</span>
+                            <span class="quote-step" data-step-indicator="3">3. Done</span>
+                        </div>
+
+                        <form class="quote-form quote-panel" data-form-role="quote-booking-start" data-quote-step="1"
+                            novalidate>
+                            <div class="field field-full">
+                                <label for="book_start_from">From <span class="req-mark">*</span></label>
+                                <input id="book_start_from" name="from" type="text" placeholder="Airport or city"
+                                    required />
+                                <p class="error-note" data-error-for="from"></p>
+                            </div>
+
+                            <div class="field field-full">
+                                <label for="book_start_to">To <span class="req-mark">*</span></label>
+                                <input id="book_start_to" name="to" type="text" placeholder="Airport or city"
+                                    required />
+                                <p class="error-note" data-error-for="to"></p>
+                            </div>
+
+                            <div class="field field-full">
+                                <label for="book_start_departure_date">Departure Date <span
+                                        class="req-mark">*</span></label>
+                                <input id="book_start_departure_date" name="departure_date" type="date" required />
+                                <p class="error-note" data-error-for="departure_date"></p>
+                            </div>
+
+                            <button class="btn btn-primary btn-shimmer field-full" type="submit"
+                                style="margin-top: 1rem;">Continue to Step 2</button>
+                        </form>
+
+                        <form class="quote-form quote-panel is-hidden" data-form-role="quote-booking"
+                            data-source-page="booking_page_step2" data-quote-step="2" novalidate>
+
+                            <div class="trip-summary field-full">
+                                <div class="trip-summary-plane" aria-hidden="true">✈</div>
+                                <div class="trip-summary-rows">
+                                    <div class="trip-summary-row">
+                                        <span class="trip-summary-label">From</span>
+                                        <input id="book_from" name="from" type="text" readonly
+                                            class="trip-summary-value" />
+                                    </div>
+                                    <div class="trip-summary-divider" aria-hidden="true"></div>
+                                    <div class="trip-summary-row">
+                                        <span class="trip-summary-label">To</span>
+                                        <input id="book_to" name="to" type="text" readonly class="trip-summary-value" />
+                                    </div>
+                                    <div class="trip-summary-divider" aria-hidden="true"></div>
+                                    <div class="trip-summary-row">
+                                        <span class="trip-summary-label">Date</span>
+                                        <input id="book_departure_date" name="departure_date" type="text" readonly
+                                            class="trip-summary-value" />
+                                    </div>
+                                </div>
+                                <button class="trip-summary-change btn" type="button" data-step-back>Change</button>
+                            </div>
+
+                            <div class="booking-columns field-full">
+                                <section class="booking-block">
+                                    <h3>Departure Details</h3>
+                                    <div class="field">
+                                        <label for="book_departure_time">Departure Time <span
+                                                class="req-mark">*</span></label>
+                                        <select id="book_departure_time" name="departure_time" required>
+                                            <option value="anytime" selected>Anytime</option>
+                                        </select>
+                                        <p class="error-note" data-error-for="departure_time"></p>
+                                    </div>
+
+                                    <div class="field" style="margin-top: 1rem;">
+                                        <label for="book_passengers">Passenger Count <span
+                                                class="req-mark">*</span></label>
+                                        <input id="book_passengers" name="passengers" type="number" min="1" max="19"
+                                            value="1" required />
+                                        <p class="error-note" data-error-for="passengers"></p>
+                                    </div>
+                                </section>
+
+                                <section class="booking-block">
+                                    <h3>Return Options</h3>
+                                    <div class="field">
+                                        <label for="book_return_date">Return Date <span
+                                                style="font-weight: normal; color: var(--color-text-muted); text-transform: none; letter-spacing: 0;">(Optional)</span></label>
+                                        <input id="book_return_date" name="return_date" type="date" />
+                                        <p class="error-note" data-error-for="return_date"></p>
+                                    </div>
+
+                                    <div class="field" style="margin-top: 1rem;">
+                                        <label for="book_return_time">Return Time <span
+                                                style="font-weight: normal; color: var(--color-text-muted); text-transform: none; letter-spacing: 0;">(Optional)</span></label>
+                                        <select id="book_return_time" name="return_time">
+                                            <option value="anytime" selected>Anytime</option>
+                                        </select>
+                                    </div>
+                                </section>
+                            </div>
+
+                            <div class="booking-columns field-full" style="margin-top: 0.5rem;">
+                                <div class="field">
+                                    <label for="book_contact_email">Email <span class="req-mark">*</span></label>
+                                    <input id="book_contact_email" name="contact_email" type="email"
+                                        placeholder="you@company.com" required />
+                                    <p class="error-note" data-error-for="contact_email"></p>
+                                </div>
+                                <div class="field">
+                                    <label for="book_contact_phone">Phone <span class="req-mark">*</span></label>
+                                    <input id="book_contact_phone" name="contact_phone" type="tel"
+                                        placeholder="+44 20..." required />
+                                    <p class="error-note" data-error-for="contact_phone"></p>
+                                </div>
+                            </div>
+
+                            <div class="field field-full" style="margin-top: 0.5rem;">
+                                <label for="book_notes">Notes <span
+                                        style="font-weight: normal; color: var(--color-text-muted); text-transform: none; letter-spacing: 0;">(Optional)</span></label>
+                                <textarea id="book_notes" name="notes"
+                                    placeholder="Special requirements, luggage details, etc."></textarea>
+                            </div>
+
+                            <p class="field field-full" data-form-response
+                                style="margin-top: 0.5rem; font-size: 0.9rem; min-height: 1.4em;"></p>
+                            <div class="field field-full quote-actions" style="margin-top: 1rem;">
+                                <button class="btn btn-primary btn-shimmer" type="submit" style="width: 100%;">Submit
+                                    Request</button>
+                            </div>
+                        </form>
+
+                        <section class="quote-panel is-hidden quote-confirmation" data-quote-step="3"
+                            aria-live="polite">
+                            <h3 style="font-size: 1.5rem; color: var(--color-primary); margin-bottom: 1rem;">Request
+                                Received</h3>
+                            <p style="color: var(--color-text-muted);">
+                                Your booking request has been sent securely. Our operations team will contact you.
+                            </p>
+                            <p class="quote-confirmation-summary" data-confirmation-summary></p>
+
+                            <div
+                                style="margin: 2rem 0; padding: 1.5rem; background: var(--color-bg-black-alpha-30); border-radius: 6px; border-left: 3px solid var(--color-primary);">
+                                <p style="margin-bottom: 0.5rem; color: var(--color-text-main);"><strong>Need immediate
+                                        assistance?</strong></p>
+                                <p style="color: var(--color-text-muted); margin-bottom: 0.3rem;">Call us: <a
+                                        href="tel:+442000000000"
+                                        style="color: var(--color-primary); text-decoration: none; font-weight: 500;">+44
+                                        20 0000 0000</a></p>
+                                <p style="color: var(--color-text-muted);">Email: <a
+                                        href="mailto:ops@britishflightcenter.com"
+                                        style="color: var(--color-primary); text-decoration: none; font-weight: 500;">ops@britishflightcenter.com</a>
+                                </p>
+                            </div>
+
+                            <a href="contact.html" class="btn btn-outline"
+                                style="text-decoration: none; display: inline-block;">Contact Us</a>
+                        </section>
+                    </article>
+                </div>
             </div>
-
-            <form class="quote-form quote-panel" data-form-role="quote-booking-start" data-quote-step="1" novalidate>
-              <div class="field">
-                <label for="book_start_from">From <span class="req-mark">*</span></label>
-                <input id="book_start_from" name="from" type="text" placeholder="Airport or city" required />
-                <p class="error-note" data-error-for="from"></p>
-              </div>
-
-              <div class="field">
-                <label for="book_start_to">To <span class="req-mark">*</span></label>
-                <input id="book_start_to" name="to" type="text" placeholder="Airport or city" required />
-                <p class="error-note" data-error-for="to"></p>
-              </div>
-
-              <div class="field">
-                <label for="book_start_departure_date">Departure Date <span class="req-mark">*</span></label>
-                <input id="book_start_departure_date" name="departure_date" type="date" required />
-                <p class="error-note" data-error-for="departure_date"></p>
-              </div>
-
-              <p class="form-hint">Step 1 of 3. Continue to add full contact and flight details.</p>
-              <button class="btn btn-primary btn-shimmer field-full" type="submit">Continue to Step 2</button>
-            </form>
-
-            <form
-              class="quote-form quote-panel is-hidden"
-              data-form-role="quote-booking"
-              data-source-page="booking_page_step2"
-              data-quote-step="2"
-              novalidate
-            >
-              <div class="booking-columns field-full">
-                <section class="booking-block">
-                  <h3>Departure Details</h3>
-                  <div class="field">
-                    <label for="book_from">Departure Location <span class="req-mark">*</span></label>
-                    <input id="book_from" name="from" type="text" placeholder="Airport or city" required readonly />
-                    <p class="error-note" data-error-for="from"></p>
-                  </div>
-
-                  <div class="field">
-                    <label for="book_departure_date">Departure Date <span class="req-mark">*</span></label>
-                    <input id="book_departure_date" name="departure_date" type="date" required />
-                    <p class="error-note" data-error-for="departure_date"></p>
-                  </div>
-
-                  <div class="field">
-                    <label for="book_departure_time">Departure Time <span class="req-mark">*</span></label>
-                    <select id="book_departure_time" name="departure_time" required>
-                      <option value="anytime" selected>Anytime</option>
-                    </select>
-                    <p class="error-note" data-error-for="departure_time"></p>
-                  </div>
-                </section>
-
-                <section class="booking-block">
-                  <h3>Destination Details</h3>
-                  <div class="field">
-                    <label for="book_to">Destination <span class="req-mark">*</span></label>
-                    <input id="book_to" name="to" type="text" placeholder="Airport or city" required readonly />
-                    <p class="error-note" data-error-for="to"></p>
-                  </div>
-
-                  <div class="field">
-                    <label for="book_return_date">Return Date (Optional)</label>
-                    <input id="book_return_date" name="return_date" type="date" />
-                    <p class="error-note" data-error-for="return_date"></p>
-                  </div>
-
-                  <div class="field">
-                    <label for="book_return_time">Return Time (Optional)</label>
-                    <select id="book_return_time" name="return_time">
-                      <option value="anytime" selected>Anytime</option>
-                    </select>
-                    <p class="error-note" data-error-for="return_time"></p>
-                  </div>
-
-                </section>
-              </div>
-
-              <div class="field field-full">
-                <label for="book_passengers">Passenger Number <span class="req-mark">*</span></label>
-                <input id="book_passengers" name="passengers" type="number" min="1" max="19" value="1" required />
-                <p class="error-note" data-error-for="passengers"></p>
-              </div>
-
-              <div class="contact-row field-full">
-                <div class="field">
-                <label for="book_contact_email">Email <span class="req-mark">*</span></label>
-                <input id="book_contact_email" name="contact_email" type="email" placeholder="you@company.com" required />
-                <p class="error-note" data-error-for="contact_email"></p>
-                </div>
-
-                <div class="field">
-                <label for="book_contact_phone">Phone <span class="req-mark">*</span></label>
-                <input id="book_contact_phone" name="contact_phone" type="tel" placeholder="+44 ..." required />
-                <p class="error-note" data-error-for="contact_phone"></p>
-                </div>
-              </div>
-
-              <div class="field field-full">
-                <label for="book_notes">Notes</label>
-                <textarea id="book_notes" name="notes" placeholder="Any special requirements, timing windows, baggage, transport"></textarea>
-              </div>
-
-              <div class="field field-full quote-actions">
-                <button class="btn btn-outline" type="button" data-step-back>Back to Step 1</button>
-                <button class="btn btn-primary btn-shimmer" type="submit">Submit Booking Request</button>
-              </div>
-
-              <p class="form-hint">No instant pricing shown. Every quote is reviewed by our team.</p>
-              <p class="form-response" data-form-response></p>
-            </form>
-
-            <section class="quote-panel is-hidden quote-confirmation" data-quote-step="3" aria-live="polite">
-              <h3>Request Received</h3>
-              <p>
-                Your booking request has been sent successfully. We have received your email and our operations team will
-                contact you as soon as possible.
-              </p>
-              <p class="quote-confirmation-summary" data-confirmation-summary></p>
-              <div class="quote-emergency">
-                <h4>Emergency or Additional Requests</h4>
-                <p><strong>Operations Phone:</strong> +44 20 0000 0000</p>
-                <p><strong>Email:</strong> ops@britishflightcenter.com</p>
-                <p><strong>Main Airport:</strong> Elstree Aerodrome (London)</p>
-              </div>
-              <button class="btn btn-outline" type="button" data-step-restart>Start New Request</button>
-            </section>
-          </article>
-        </div>
-      </section>
+        </section>
     </main>
 
-    <footer class="site-footer">
-      <div class="container footer-row">
-        <p>&copy; <span id="year">2026</span> British Flight Center. All rights reserved.</p>
-        <p>Elstree Aerodrome Base | Europe Charter Operations</p>
-        <img class="footer-mark" src="assets/icons/logo-square.png" alt="British Flight Center mark" loading="lazy" />
-      </div>
+    <footer>
+        <div class="container">
+            <img src="assets/images/logo.png" alt="BFC Logo" class="footer-logo footer-logo-full">
+            <p class="footer-copy">&copy; 2026 British Flight Center. Redefined Luxury Aviation. All rights reserved.
+            </p>
+        </div>
     </footer>
 
-    <script>
-      document.getElementById("year").textContent = String(new Date().getFullYear());
-    </script>
-  </body>
+    <script src="js/main.js?v=2"></script>
+</body>
+
 </html>
