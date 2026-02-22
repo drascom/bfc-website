@@ -18,6 +18,16 @@
   - `assets/media/hero-loop-small.mp4`
 - Keep the poster fallback at `assets/media/hero-poster.jpg` (or replace with your image)
 
+## Homepage Screenshots
+Captured from:
+- `http://127.0.0.1:5173/index.html`
+
+Desktop:
+![Homepage Desktop](docs/screenshots/home-desktop.png)
+
+Mobile:
+![Homepage Mobile](docs/screenshots/home-mobile.png)
+
 ## Placeholder Media Sources (Free)
 - Video: [Coverr](https://coverr.co/videos/private-jets-at-an-airport-c9QWX5kH4L)
 - Fleet image 1: [Pexels](https://www.pexels.com/photo/private-jet-at-sunset-on-runway-28772726/)
