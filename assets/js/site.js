@@ -75,6 +75,120 @@
     return Number.isNaN(d.getTime()) ? null : d;
   };
 
+  const airportOptions = [
+    "LHR - London Heathrow (London, UK)",
+    "LGW - London Gatwick (London, UK)",
+    "STN - London Stansted (London, UK)",
+    "LTN - London Luton (London, UK)",
+    "LCY - London City (London, UK)",
+    "SEN - London Southend (London, UK)",
+    "BRS - Bristol Airport (Bristol, UK)",
+    "BHX - Birmingham Airport (Birmingham, UK)",
+    "MAN - Manchester Airport (Manchester, UK)",
+    "LPL - Liverpool John Lennon Airport (Liverpool, UK)",
+    "LBA - Leeds Bradford Airport (Leeds, UK)",
+    "NCL - Newcastle International Airport (Newcastle, UK)",
+    "EMA - East Midlands Airport (Nottingham/Derby, UK)",
+    "CWL - Cardiff Airport (Cardiff, UK)",
+    "SOU - Southampton Airport (Southampton, UK)",
+    "BOH - Bournemouth Airport (Bournemouth, UK)",
+    "EXT - Exeter Airport (Exeter, UK)",
+    "NQY - Cornwall Airport Newquay (Newquay, UK)",
+    "NWI - Norwich Airport (Norwich, UK)",
+    "DSA - Doncaster Sheffield Airport (Doncaster, UK)",
+    "MME - Teesside International Airport (Teesside, UK)",
+    "HUY - Humberside Airport (Humberside, UK)",
+    "ABZ - Aberdeen Airport (Aberdeen, UK)",
+    "EDI - Edinburgh Airport (Edinburgh, UK)",
+    "GLA - Glasgow Airport (Glasgow, UK)",
+    "PIK - Glasgow Prestwick Airport (Glasgow, UK)",
+    "INV - Inverness Airport (Inverness, UK)",
+    "DND - Dundee Airport (Dundee, UK)",
+    "BFS - Belfast International Airport (Belfast, UK)",
+    "BHD - George Best Belfast City Airport (Belfast, UK)",
+    "LDY - City of Derry Airport (Derry, UK)",
+    "JER - Jersey Airport (Jersey, Channel Islands)",
+    "GCI - Guernsey Airport (Guernsey, Channel Islands)",
+    "IOM - Isle of Man Airport (Douglas, Isle of Man)",
+    "DUB - Dublin Airport (Dublin, Ireland)",
+    "SNN - Shannon Airport (Shannon, Ireland)",
+    "ORK - Cork Airport (Cork, Ireland)",
+    "AMS - Amsterdam Schiphol Airport (Amsterdam, Netherlands)",
+    "CDG - Paris Charles de Gaulle Airport (Paris, France)",
+    "ORY - Paris Orly Airport (Paris, France)",
+    "NCE - Nice Cote d'Azur Airport (Nice, France)",
+    "LYS - Lyon-Saint Exupery Airport (Lyon, France)",
+    "MRS - Marseille Provence Airport (Marseille, France)",
+    "FRA - Frankfurt Airport (Frankfurt, Germany)",
+    "MUC - Munich Airport (Munich, Germany)",
+    "BER - Berlin Brandenburg Airport (Berlin, Germany)",
+    "DUS - Dusseldorf Airport (Dusseldorf, Germany)",
+    "HAM - Hamburg Airport (Hamburg, Germany)",
+    "STR - Stuttgart Airport (Stuttgart, Germany)",
+    "ZRH - Zurich Airport (Zurich, Switzerland)",
+    "GVA - Geneva Airport (Geneva, Switzerland)",
+    "BSL - EuroAirport Basel Mulhouse Freiburg (Basel, Switzerland)",
+    "VIE - Vienna International Airport (Vienna, Austria)",
+    "BRU - Brussels Airport (Brussels, Belgium)",
+    "LUX - Luxembourg Airport (Luxembourg)",
+    "MAD - Adolfo Suarez Madrid-Barajas Airport (Madrid, Spain)",
+    "BCN - Barcelona-El Prat Airport (Barcelona, Spain)",
+    "PMI - Palma de Mallorca Airport (Palma, Spain)",
+    "AGP - Malaga-Costa del Sol Airport (Malaga, Spain)",
+    "LIS - Humberto Delgado Airport (Lisbon, Portugal)",
+    "OPO - Francisco Sa Carneiro Airport (Porto, Portugal)",
+    "MXP - Milan Malpensa Airport (Milan, Italy)",
+    "LIN - Milan Linate Airport (Milan, Italy)",
+    "FCO - Rome Fiumicino Airport (Rome, Italy)",
+    "CIA - Rome Ciampino Airport (Rome, Italy)",
+    "VCE - Venice Marco Polo Airport (Venice, Italy)",
+    "BLQ - Bologna Guglielmo Marconi Airport (Bologna, Italy)",
+    "FLR - Florence Airport (Florence, Italy)",
+    "NAP - Naples International Airport (Naples, Italy)",
+    "ATH - Athens International Airport (Athens, Greece)",
+    "SKG - Thessaloniki Airport (Thessaloniki, Greece)",
+    "PRG - Vaclav Havel Airport Prague (Prague, Czechia)",
+    "BUD - Budapest Ferenc Liszt Airport (Budapest, Hungary)",
+    "WAW - Warsaw Chopin Airport (Warsaw, Poland)",
+    "KRK - Krakow John Paul II Airport (Krakow, Poland)",
+    "CPH - Copenhagen Airport (Copenhagen, Denmark)",
+    "ARN - Stockholm Arlanda Airport (Stockholm, Sweden)",
+    "OSL - Oslo Airport Gardermoen (Oslo, Norway)",
+    "HEL - Helsinki Airport (Helsinki, Finland)",
+    "KEF - Keflavik International Airport (Reykjavik, Iceland)",
+    "IST - Istanbul Airport (Istanbul, Turkiye)",
+    "SAW - Sabiha Gokcen Airport (Istanbul, Turkiye)",
+    "IKA - Imam Khomeini International Airport (Tehran, Iran)",
+    "THR - Mehrabad International Airport (Tehran, Iran)"
+  ];
+
+  const initAirportSearch = () => {
+    const airportInputs = $$('input[name="from"], input[name="to"]');
+    if (!airportInputs.length) return;
+
+    let datalist = $("#airport-options-list");
+    if (!datalist) {
+      datalist = document.createElement("datalist");
+      datalist.id = "airport-options-list";
+      document.body.appendChild(datalist);
+    }
+
+    if (!datalist.children.length) {
+      airportOptions.forEach((airport) => {
+        const option = document.createElement("option");
+        option.value = airport;
+        datalist.appendChild(option);
+      });
+    }
+
+    airportInputs.forEach((input) => {
+      input.setAttribute("list", "airport-options-list");
+      input.setAttribute("autocomplete", "off");
+      input.setAttribute("spellcheck", "false");
+      input.placeholder = "Search airport";
+    });
+  };
+
   const randInt = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
 
   const generateCaptcha = () => {
@@ -538,6 +652,7 @@
     });
   };
 
+  initAirportSearch();
   initBookingFlow();
 
   $$('form[data-form-role="contact"]').forEach((form) => {
