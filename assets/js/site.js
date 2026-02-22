@@ -157,9 +157,7 @@
     "HEL - Helsinki Airport (Helsinki, Finland)",
     "KEF - Keflavik International Airport (Reykjavik, Iceland)",
     "IST - Istanbul Airport (Istanbul, Turkiye)",
-    "SAW - Sabiha Gokcen Airport (Istanbul, Turkiye)",
-    "IKA - Imam Khomeini International Airport (Tehran, Iran)",
-    "THR - Mehrabad International Airport (Tehran, Iran)"
+    "SAW - Sabiha Gokcen Airport (Istanbul, Turkiye)"
   ];
 
   const initAirportSearch = () => {
@@ -747,10 +745,7 @@
       Frankfurt: { lat: 50.1109, lon: 8.6821 },
       Milan: { lat: 45.4642, lon: 9.19 },
       Vienna: { lat: 48.2082, lon: 16.3738 },
-      Istanbul: { lat: 41.0082, lon: 28.9784, core: true },
-      Tehran: { lat: 35.6892, lon: 51.389 },
-      "Kish Island": { lat: 26.532, lon: 53.9802 },
-      Mashhad: { lat: 36.2605, lon: 59.6168 }
+      Istanbul: { lat: 41.0082, lon: 28.9784, core: true }
     };
 
     const routes = [
@@ -760,10 +755,7 @@
       { from: "Istanbul", to: "Geneva" },
       { from: "Istanbul", to: "Frankfurt" },
       { from: "Istanbul", to: "Milan" },
-      { from: "Istanbul", to: "Vienna" },
-      { from: "Istanbul", to: "Tehran" },
-      { from: "Istanbul", to: "Kish Island" },
-      { from: "Istanbul", to: "Mashhad" }
+      { from: "Istanbul", to: "Vienna" }
     ];
 
     const map = L.map(mapEl, {
@@ -865,7 +857,7 @@
       });
     };
 
-    const cycleCities = ["London", "Paris", "Geneva", "Frankfurt", "Milan", "Vienna", "Istanbul", "Tehran", "Kish Island", "Mashhad"];
+    const cycleCities = ["London", "Paris", "Geneva", "Frankfurt", "Milan", "Vienna", "Istanbul"];
     let activeIndex = 0;
     setActiveCity(cycleCities[activeIndex]);
 
