@@ -3,6 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" href="assets/icons/logo-square.png" />
+    <link rel="apple-touch-icon" href="assets/icons/logo-square.png" />
     <title>Fleet | British Flight Center</title>
     <meta name="description" content="Explore the two-aircraft fleet profile for charter across Europe and Iran." />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -20,7 +22,9 @@
   <body>
     <header class="site-header load-in">
       <div class="container nav-wrap">
-        <a class="brand" href="index.html">British Flight Center</a>
+        <a class="brand" href="index.html" aria-label="British Flight Center home">
+          <img class="brand-logo" src="assets/icons/logo-long.png" alt="British Flight Center" />
+        </a>
         <button class="nav-toggle" type="button" data-nav-toggle aria-expanded="false" aria-controls="main-menu">
           Menu
         </button>
@@ -101,6 +105,7 @@
       <div class="container footer-row">
         <p>&copy; <span id="year">2026</span> British Flight Center. All rights reserved.</p>
         <p>Fleet brief is illustrative. Final specs are confirmed in quotation.</p>
+        <img class="footer-mark" src="assets/icons/logo-square.png" alt="British Flight Center mark" loading="lazy" />
       </div>
     </footer>
 

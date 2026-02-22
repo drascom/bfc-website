@@ -16,10 +16,21 @@
 }
 
 .brand {
-  font-family: var(--font-heading);
-  letter-spacing: 0.09em;
-  text-transform: uppercase;
-  font-size: 1.08rem;
+  display: inline-flex;
+  align-items: center;
+  max-width: 220px;
+}
+
+.brand-logo {
+  height: 50px;
+  width: auto;
+  object-fit: contain;
+}
+
+.footer-mark {
+  height: 30px;
+  width: auto;
+  opacity: 0.92;
 }
 
 .nav-toggle {
@@ -947,6 +958,14 @@
 }
 
 @media (max-width: 760px) {
+  .brand-logo {
+    height: 40px;
+  }
+
+  .footer-mark {
+    height: 24px;
+  }
+
   .hero-media video {
     display: none;
   }
