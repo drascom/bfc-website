@@ -42,7 +42,7 @@
         <div class="container reveal">
           <span class="kicker">Booking</span>
           <h1 class="mask-reveal">Complete Your Flight Request</h1>
-          <p>Step 2 and confirmation. Review and update all details before final submission.</p>
+          <p>Complete step 1, then review and finalize your request details.</p>
         </div>
       </section>
 
@@ -51,12 +51,41 @@
           <article class="quote-card glass reveal">
             <h2 class="section-title" style="font-size: 1.7rem">Request a Quote</h2>
             <div class="quote-stepper" aria-label="Booking steps">
-              <span class="quote-step" data-step-indicator="1">1. Travel Details</span>
-              <span class="quote-step is-active" data-step-indicator="2">2. Contact Information</span>
+              <span class="quote-step is-active" data-step-indicator="1">1. Travel Details</span>
+              <span class="quote-step" data-step-indicator="2">2. Contact Information</span>
               <span class="quote-step" data-step-indicator="3">3. Confirmation</span>
             </div>
 
-            <form class="quote-form quote-panel" data-form-role="quote-booking" data-source-page="booking_page_step2" data-quote-step="2" novalidate>
+            <form class="quote-form quote-panel" data-form-role="quote-booking-start" data-quote-step="1" novalidate>
+              <div class="field">
+                <label for="book_start_from">From <span class="req-mark">*</span></label>
+                <input id="book_start_from" name="from" type="text" placeholder="Airport or city" required />
+                <p class="error-note" data-error-for="from"></p>
+              </div>
+
+              <div class="field">
+                <label for="book_start_to">To <span class="req-mark">*</span></label>
+                <input id="book_start_to" name="to" type="text" placeholder="Airport or city" required />
+                <p class="error-note" data-error-for="to"></p>
+              </div>
+
+              <div class="field">
+                <label for="book_start_departure_date">Departure Date <span class="req-mark">*</span></label>
+                <input id="book_start_departure_date" name="departure_date" type="date" required />
+                <p class="error-note" data-error-for="departure_date"></p>
+              </div>
+
+              <p class="form-hint">Step 1 of 3. Continue to add full contact and flight details.</p>
+              <button class="btn btn-primary btn-shimmer field-full" type="submit">Continue to Step 2</button>
+            </form>
+
+            <form
+              class="quote-form quote-panel is-hidden"
+              data-form-role="quote-booking"
+              data-source-page="booking_page_step2"
+              data-quote-step="2"
+              novalidate
+            >
               <div class="booking-columns field-full">
                 <section class="booking-block">
                   <h3>Departure Details</h3>
@@ -132,7 +161,7 @@
               </div>
 
               <div class="field field-full quote-actions">
-                <a class="btn btn-outline" href="index.html#request-quote">Back to Step 1</a>
+                <button class="btn btn-outline" type="button" data-step-back>Back to Step 1</button>
                 <button class="btn btn-primary btn-shimmer" type="submit">Submit Booking Request</button>
               </div>
 

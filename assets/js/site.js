@@ -563,25 +563,50 @@
       });
     }
 
+    const bookingStartForm = $('form[data-form-role="quote-booking-start"]');
     const bookingForm = $('form[data-form-role="quote-booking"]');
     const confirmationPanel = $('[data-quote-step="3"]');
+    const backBtn = $("[data-step-back]");
     const restartBtn = $("[data-step-restart]");
     const summaryEl = $("[data-confirmation-summary]");
     const indicators = $$("[data-step-indicator]");
-    if (!bookingForm || !confirmationPanel) return;
+    if (!bookingStartForm || !bookingForm || !confirmationPanel) return;
     insertCaptchaBlock(bookingForm);
+    bindSanitizers(bookingStartForm);
     bindSanitizers(bookingForm);
 
     const showStep = (n) => {
+      bookingStartForm.classList.toggle("is-hidden", n !== 1);
       bookingForm.classList.toggle("is-hidden", n !== 2);
       confirmationPanel.classList.toggle("is-hidden", n !== 3);
       indicators.forEach((i) => i.classList.toggle("is-active", Number(i.dataset.stepIndicator) === n));
     };
 
+    const copyStartToBooking = () => {
+      bookingForm.elements.from.value = bookingStartForm.elements.from.value || "";
+      bookingForm.elements.to.value = bookingStartForm.elements.to.value || "";
+      bookingForm.elements.departure_date.value = bookingStartForm.elements.departure_date.value || "";
+    };
+
+    const copyBookingToStart = () => {
+      bookingStartForm.elements.from.value = bookingForm.elements.from.value || "";
+      bookingStartForm.elements.to.value = bookingForm.elements.to.value || "";
+      bookingStartForm.elements.departure_date.value = bookingForm.elements.departure_date.value || "";
+    };
+
     const query = new URLSearchParams(window.location.search);
-    if (query.get("from")) bookingForm.elements.from.value = query.get("from");
-    if (query.get("to")) bookingForm.elements.to.value = query.get("to");
-    if (query.get("departure_date")) bookingForm.elements.departure_date.value = query.get("departure_date");
+    if (query.get("from")) {
+      bookingStartForm.elements.from.value = query.get("from");
+      bookingForm.elements.from.value = query.get("from");
+    }
+    if (query.get("to")) {
+      bookingStartForm.elements.to.value = query.get("to");
+      bookingForm.elements.to.value = query.get("to");
+    }
+    if (query.get("departure_date")) {
+      bookingStartForm.elements.departure_date.value = query.get("departure_date");
+      bookingForm.elements.departure_date.value = query.get("departure_date");
+    }
 
     const buildTimeOptions = (selectName) => {
       const select = bookingForm.elements[selectName];
@@ -601,15 +626,38 @@
     buildTimeOptions("departure_time");
     buildTimeOptions("return_time");
 
+    setDepartureMin(bookingStartForm);
     setDepartureMin(bookingForm);
-    showStep(2);
+    showStep(query.get("from") || query.get("to") || query.get("departure_date") ? 2 : 1);
+
+    bookingStartForm.addEventListener("submit", (event) => {
+      event.preventDefault();
+      if (!validateForm(bookingStartForm)) {
+        responseMessage(bookingStartForm, "error", "Please fix highlighted fields and try again.");
+        return;
+      }
+      copyStartToBooking();
+      responseMessage(bookingStartForm, "", "");
+      clearErrors(bookingStartForm);
+      showStep(2);
+    });
+
+    if (backBtn) {
+      backBtn.addEventListener("click", () => {
+        copyBookingToStart();
+        clearErrors(bookingForm);
+        showStep(1);
+      });
+    }
 
     if (restartBtn) {
       restartBtn.addEventListener("click", () => {
+        bookingStartForm.reset();
         bookingForm.reset();
         refreshCaptcha(bookingForm);
+        clearErrors(bookingStartForm);
         clearErrors(bookingForm);
-        showStep(2);
+        showStep(1);
       });
     }
 
