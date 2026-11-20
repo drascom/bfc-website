@@ -382,6 +382,8 @@ app.delete("/api/admin/users/:id", requireAdmin, requireCsrf, (req, res) => {
   return res.json({ ok: true });
 });
 
-app.listen(port, () => {
-  console.log(`BFC server listening on http://localhost:${port}`);
+const bindHost = process.env.HOST || "127.0.0.1";
+
+app.listen(port, bindHost, () => {
+  console.log(`BFC server listening on http://${bindHost}:${port}`);
 });
