@@ -64,6 +64,26 @@ const updateSubmissionSchema = z
     message: "No updatable fields provided."
   });
 
+const adminPasswordSchema = z
+  .string({ required_error: "Password is required." })
+  .min(10, "Password must be at least 10 characters.")
+  .max(200, "Password is too long.");
+
+const createAdminUserSchema = z.object({
+  email: emailSchema,
+  password: adminPasswordSchema
+});
+
+const updateAdminUserSchema = z
+  .object({
+    email: emailSchema.optional(),
+    password: adminPasswordSchema.optional().or(z.literal(""))
+  })
+  .refine(
+    (payload) => typeof payload.email === "string" || (typeof payload.password === "string" && payload.password !== ""),
+    { message: "No updatable fields provided." }
+  );
+
 function zodErrorsToFieldMap(error) {
   const out = {};
   for (const issue of error.issues || []) {
@@ -148,8 +168,42 @@ function parseAdminUpdate(body) {
   };
 }
 
+function parseAdminUserCreate(body) {
+  const parsed = createAdminUserSchema.safeParse(body);
+  if (!parsed.success) {
+    return { ok: false, errors: zodErrorsToFieldMap(parsed.error) };
+  }
+
+  const data = parsed.data;
+  return {
+    ok: true,
+    data: {
+      email: clean(data.email).toLowerCase(),
+      password: data.password
+    }
+  };
+}
+
+function parseAdminUserUpdate(body) {
+  const parsed = updateAdminUserSchema.safeParse(body);
+  if (!parsed.success) {
+    return { ok: false, errors: zodErrorsToFieldMap(parsed.error) };
+  }
+
+  const data = parsed.data;
+  return {
+    ok: true,
+    data: {
+      ...(typeof data.email === "string" ? { email: clean(data.email).toLowerCase() } : {}),
+      ...(typeof data.password === "string" && data.password !== "" ? { password: data.password } : {})
+    }
+  };
+}
+
 module.exports = {
   parseBookingSubmission,
   parseContactSubmission,
-  parseAdminUpdate
+  parseAdminUpdate,
+  parseAdminUserCreate,
+  parseAdminUserUpdate
 };

@@ -203,7 +203,10 @@
         const actionTd = document.createElement("td");
         const viewBtn = document.createElement("button");
         viewBtn.type = "button";
-        viewBtn.textContent = "View";
+        viewBtn.className = "icon-btn ghost-btn";
+        viewBtn.innerHTML = '<svg class="icon"><use href="#icon-eye"></use></svg>';
+        viewBtn.title = "View details";
+        viewBtn.setAttribute("aria-label", "View details");
         viewBtn.addEventListener("click", () => {
           loadDetail(row.id).catch((err) => {
             alert(err.payload?.error || "Failed to load detail.");
@@ -237,6 +240,26 @@
         alert(err.payload?.error || "Failed to load submissions.");
       });
     });
+
+    const applyFiltersNow = () => {
+      currentPage = 1;
+      loadRows().catch((err) => {
+        alert(err.payload?.error || "Failed to load submissions.");
+      });
+    };
+
+    let searchDebounceTimer = null;
+    filtersForm.querySelectorAll("select, input[type=date]").forEach((field) => {
+      field.addEventListener("change", applyFiltersNow);
+    });
+
+    const searchField = filtersForm.querySelector("input[name=q]");
+    if (searchField) {
+      searchField.addEventListener("input", () => {
+        clearTimeout(searchDebounceTimer);
+        searchDebounceTimer = setTimeout(applyFiltersNow, 350);
+      });
+    }
 
     resetBtn.addEventListener("click", () => {
       filtersForm.reset();
@@ -301,6 +324,206 @@
     await loadRows();
   }
 
+  function createTextCell(text) {
+    const td = document.createElement("td");
+    td.textContent = text == null || text === "" ? "-" : String(text);
+    return td;
+  }
+
+  async function initUsersPage() {
+    const tbody = document.getElementById("users-tbody");
+    if (!tbody) return;
+
+    const usersMeta = document.getElementById("users-meta");
+    const createForm = document.getElementById("user-create-form");
+    const createMsg = document.getElementById("user-create-msg");
+    const editOverlay = document.getElementById("user-edit-overlay");
+    const editSidebar = document.getElementById("user-edit-sidebar");
+    const editCloseBtn = document.getElementById("user-edit-close-btn");
+    const editForm = document.getElementById("user-edit-form");
+    const editMsg = document.getElementById("user-edit-msg");
+
+    let editingId = null;
+    let currentUserId = null;
+
+    const openEdit = () => {
+      editOverlay.hidden = false;
+      editSidebar.classList.add("is-open");
+      editSidebar.setAttribute("aria-hidden", "false");
+    };
+
+    const closeEdit = () => {
+      editSidebar.classList.remove("is-open");
+      editSidebar.setAttribute("aria-hidden", "true");
+      editOverlay.hidden = true;
+      editingId = null;
+    };
+
+    const loadUsers = async () => {
+      const result = await api("/api/admin/users");
+      tbody.innerHTML = "";
+
+      result.rows.forEach((row) => {
+        const tr = document.createElement("tr");
+        tr.appendChild(createTextCell(row.email));
+        tr.appendChild(createTextCell(formatDate(row.created_at)));
+        tr.appendChild(createTextCell(formatDate(row.last_login_at)));
+
+        const actionTd = document.createElement("td");
+
+        const editBtn = document.createElement("button");
+        editBtn.type = "button";
+        editBtn.className = "icon-btn ghost-btn";
+        editBtn.innerHTML = '<svg class="icon"><use href="#icon-edit"></use></svg>';
+        editBtn.title = "Edit user";
+        editBtn.setAttribute("aria-label", "Edit user");
+        editBtn.addEventListener("click", () => {
+          editingId = row.id;
+          editForm.elements.email.value = row.email;
+          editForm.elements.password.value = "";
+          editMsg.textContent = "";
+          openEdit();
+        });
+        actionTd.appendChild(editBtn);
+
+        const deleteBtn = document.createElement("button");
+        deleteBtn.type = "button";
+        deleteBtn.innerHTML = '<svg class="icon"><use href="#icon-trash"></use></svg>';
+        deleteBtn.className = "icon-btn ghost-btn";
+        deleteBtn.style.marginLeft = "0.4rem";
+        deleteBtn.title = "Delete user";
+        deleteBtn.setAttribute("aria-label", "Delete user");
+        if (row.id === currentUserId) {
+          deleteBtn.disabled = true;
+          deleteBtn.title = "You cannot delete your own account.";
+          deleteBtn.setAttribute("aria-label", deleteBtn.title);
+        }
+        deleteBtn.addEventListener("click", async () => {
+          if (!window.confirm(`Delete admin user ${row.email}?`)) return;
+          try {
+            await api(`/api/admin/users/${row.id}`, { method: "DELETE" });
+            await loadUsers();
+          } catch (err) {
+            alert(err.payload?.error || "Failed to delete admin user.");
+          }
+        });
+        actionTd.appendChild(deleteBtn);
+
+        tr.appendChild(actionTd);
+        tbody.appendChild(tr);
+      });
+
+      if (!result.rows.length) {
+        const tr = document.createElement("tr");
+        const td = document.createElement("td");
+        td.colSpan = 4;
+        td.textContent = "No admin users found.";
+        tr.appendChild(td);
+        tbody.appendChild(tr);
+      }
+
+      usersMeta.textContent = `Total: ${result.rows.length}`;
+    };
+
+    createForm.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      createMsg.textContent = "";
+      const fd = new FormData(createForm);
+      const payload = Object.fromEntries(fd.entries());
+
+      try {
+        await api("/api/admin/users", { method: "POST", body: payload });
+        createForm.reset();
+        await loadUsers();
+      } catch (err) {
+        createMsg.textContent =
+          err.payload?.errors?.email || err.payload?.errors?.password || err.payload?.errors?.form || "Failed to add user.";
+      }
+    });
+
+    editForm.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      if (!editingId) return;
+      editMsg.textContent = "";
+
+      const payload = { email: editForm.elements.email.value };
+      if (editForm.elements.password.value) {
+        payload.password = editForm.elements.password.value;
+      }
+
+      try {
+        await api(`/api/admin/users/${editingId}`, { method: "PATCH", body: payload });
+        closeEdit();
+        await loadUsers();
+      } catch (err) {
+        editMsg.textContent =
+          err.payload?.errors?.email || err.payload?.errors?.password || err.payload?.errors?.form || "Failed to save user.";
+      }
+    });
+
+    editOverlay.addEventListener("click", closeEdit);
+    editCloseBtn.addEventListener("click", closeEdit);
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") closeEdit();
+    });
+
+    try {
+      const session = await api("/api/admin/session");
+      currentUserId = session.user?.id ?? null;
+    } catch (_err) {
+      // session handled elsewhere
+    }
+
+    await loadUsers();
+  }
+
+  function initTabs() {
+    const tabs = document.querySelectorAll(".admin-tab");
+    if (!tabs.length) return;
+
+    tabs.forEach((tab) => {
+      tab.addEventListener("click", () => {
+        const target = tab.dataset.tab;
+
+        document.querySelectorAll(".admin-tab").forEach((btn) => {
+          const isActive = btn === tab;
+          btn.classList.toggle("is-active", isActive);
+          btn.setAttribute("aria-selected", String(isActive));
+        });
+
+        document.querySelectorAll(".admin-tab-panel").forEach((panel) => {
+          panel.classList.toggle("is-active", panel.id === `tab-${target}`);
+        });
+      });
+    });
+  }
+
+  function initTheme() {
+    const btn = document.getElementById("theme-toggle-btn");
+    if (!btn) return;
+
+    const iconUse = document.getElementById("theme-toggle-icon");
+
+    const applyIcon = (theme) => {
+      if (iconUse) iconUse.setAttribute("href", theme === "dark" ? "#icon-sun" : "#icon-moon");
+      btn.title = theme === "dark" ? "Switch to light mode" : "Switch to dark mode";
+      btn.setAttribute("aria-label", btn.title);
+    };
+
+    applyIcon(document.documentElement.getAttribute("data-theme") || "light");
+
+    btn.addEventListener("click", () => {
+      const current = document.documentElement.getAttribute("data-theme") === "dark" ? "dark" : "light";
+      const next = current === "dark" ? "light" : "dark";
+      document.documentElement.setAttribute("data-theme", next);
+      localStorage.setItem("bfc-admin-theme", next);
+      applyIcon(next);
+    });
+  }
+
   initLoginPage();
   initDashboardPage();
+  initUsersPage();
+  initTabs();
+  initTheme();
 })();

@@ -91,6 +91,52 @@ function updateAdminLastLogin(id) {
   db.prepare("UPDATE admin_users SET last_login_at = ? WHERE id = ?").run(nowIso(), id);
 }
 
+function listAdminUsers() {
+  return db
+    .prepare(
+      "SELECT id, email, created_at, last_login_at FROM admin_users ORDER BY created_at ASC"
+    )
+    .all();
+}
+
+function countAdminUsers() {
+  const row = db.prepare("SELECT COUNT(*) AS total FROM admin_users").get();
+  return row.total || 0;
+}
+
+function createAdminUser({ email, passwordHash }) {
+  const createdAt = nowIso();
+  const result = db
+    .prepare("INSERT INTO admin_users (email, password_hash, created_at) VALUES (?, ?, ?)")
+    .run(email, passwordHash, createdAt);
+  return getAdminById(Number(result.lastInsertRowid));
+}
+
+function updateAdminUser(id, { email, passwordHash }) {
+  const updates = [];
+  const params = { id };
+
+  if (typeof email === "string") {
+    updates.push("email = @email");
+    params.email = email;
+  }
+
+  if (typeof passwordHash === "string") {
+    updates.push("password_hash = @passwordHash");
+    params.passwordHash = passwordHash;
+  }
+
+  if (!updates.length) return getAdminById(id);
+
+  db.prepare(`UPDATE admin_users SET ${updates.join(", ")} WHERE id = @id`).run(params);
+  return getAdminById(id);
+}
+
+function deleteAdminUser(id) {
+  const result = db.prepare("DELETE FROM admin_users WHERE id = ?").run(id);
+  return result.changes > 0;
+}
+
 function buildSubmissionWhereClause(filters, params) {
   const where = [];
 
@@ -252,6 +298,11 @@ module.exports = {
   getAdminByEmail,
   getAdminById,
   updateAdminLastLogin,
+  listAdminUsers,
+  countAdminUsers,
+  createAdminUser,
+  updateAdminUser,
+  deleteAdminUser,
   listSubmissions,
   getSubmissionById,
   updateSubmission,

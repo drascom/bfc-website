@@ -5,11 +5,37 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Admin Login | British Flight Center</title>
     <link rel="stylesheet" href="/admin/admin.css" />
+    <script>
+      (function () {
+        var saved = localStorage.getItem("bfc-admin-theme");
+        var theme = saved === "dark" ? "dark" : "light";
+        document.documentElement.setAttribute("data-theme", theme);
+      })();
+    </script>
   </head>
   <body class="admin-body">
+    <svg aria-hidden="true" style="position: absolute; width: 0; height: 0; overflow: hidden" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <symbol id="icon-log-in" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"></path><polyline points="10 17 15 12 10 7"></polyline><line x1="15" y1="12" x2="3" y2="12"></line></symbol>
+        <symbol id="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></symbol>
+        <symbol id="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></symbol>
+      </defs>
+    </svg>
+
     <main class="admin-login-wrap">
       <section class="admin-card">
-        <h1>Admin Login</h1>
+        <div class="section-head">
+          <h1>Admin Login</h1>
+          <button
+            id="theme-toggle-btn"
+            class="icon-btn ghost-btn"
+            type="button"
+            title="Toggle dark mode"
+            aria-label="Toggle dark mode"
+          >
+            <svg class="icon"><use id="theme-toggle-icon" href="#icon-moon"></use></svg>
+          </button>
+        </div>
         <p class="muted">Sign in to access booking/contact submissions.</p>
 
         <form id="admin-login-form" class="stack">
@@ -21,7 +47,9 @@
             Password
             <input type="password" name="password" required placeholder="Password" />
           </label>
-          <button type="submit">Sign In</button>
+          <button type="submit" class="icon-btn" title="Sign in" aria-label="Sign in">
+            <svg class="icon"><use href="#icon-log-in"></use></svg>
+          </button>
           <p id="login-error" class="error-text" aria-live="polite"></p>
         </form>
       </section>

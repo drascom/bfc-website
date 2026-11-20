@@ -69,9 +69,9 @@
                 </svg>
                 <div class="hero-aircraft">
                     <div class="hero-aircraft-inner">
-                        <svg viewBox="0 0 160 80" xmlns="http://www.w3.org/2000/svg" width="200" height="100">
+                        <svg viewBox="0 0 200 100" xmlns="http://www.w3.org/2000/svg" width="200" height="100">
                             <defs>
-                                <radialGradient id="engine-glow-f" cx="78%" cy="50%" r="28%">
+                                <radialGradient id="engine-glow-f" cx="90%" cy="50%" r="30%">
                                     <stop offset="0%" stop-color="#D4AF37" stop-opacity="0.85" />
                                     <stop offset="100%" stop-color="#D4AF37" stop-opacity="0" />
                                 </radialGradient>
@@ -84,33 +84,33 @@
                                 </filter>
                             </defs>
                             <!-- Engine exhaust glow at tail -->
-                            <ellipse cx="132" cy="40" rx="18" ry="6" fill="url(#engine-glow-f)" />
-                            <!-- Fuselage (Boeing wide-body tube) -->
-                            <path d="M 14,36 Q 28,33 85,35 Q 118,36.5 138,40 Q 118,43.5 85,45 Q 28,47 14,44 Z"
+                            <ellipse cx="183" cy="50" rx="20" ry="7" fill="url(#engine-glow-f)" />
+                            <!-- Fuselage (tapered passenger-jet tube) -->
+                            <path d="M10,50 C14,43 30,39 58,39 C102,38 142,40 176,46 C183,47.5 187,49 190,50 C187,51 183,52.5 176,54 C142,60 102,62 58,61 C30,61 14,57 10,50 Z"
                                 fill="#D4AF37" filter="url(#jet-glow-f)" />
-                            <!-- Rounded nose -->
-                            <path d="M 7,40 Q 10,36 14,36 L 14,44 Q 10,44 7,40 Z" fill="#f5d773" />
-                            <!-- Main wings (large swept, mid-body) -->
-                            <path d="M 56,35.5 L 20,6  L 34,4  L 68,36 Z" fill="#c9a92e" opacity="0.95" />
-                            <path d="M 56,44.5 L 20,74 L 34,76 L 68,44 Z" fill="#c9a92e" opacity="0.95" />
+                            <!-- Nose highlight -->
+                            <path d="M10,50 C11,46 16,43 22,42 L22,58 C16,57 11,54 10,50 Z" fill="#f5d773" opacity="0.5" />
+                            <!-- Main wings (swept back) -->
+                            <path d="M76,41 L118,12 L126,15 L110,44 Z" fill="#c9a92e" opacity="0.95" />
+                            <path d="M76,59 L118,88 L126,85 L110,56 Z" fill="#c9a92e" opacity="0.95" />
                             <!-- Wing leading-edge sheen -->
-                            <path d="M 56,35.5 L 22,8  L 28,7  L 62,36 Z" fill="#f5d773" opacity="0.28" />
+                            <path d="M78,40 L120,13 L124,14.5 L82,42 Z" fill="#f5d773" opacity="0.3" />
                             <!-- Underwing engine pods -->
-                            <ellipse cx="40" cy="18" rx="13" ry="3.5" fill="#aa8620" opacity="0.92" />
-                            <ellipse cx="40" cy="18" rx="10" ry="2.2" fill="#c9a92e" opacity="0.6" />
-                            <ellipse cx="40" cy="62" rx="13" ry="3.5" fill="#aa8620" opacity="0.92" />
-                            <ellipse cx="40" cy="62" rx="10" ry="2.2" fill="#c9a92e" opacity="0.6" />
-                            <!-- Horizontal stabilisers -->
-                            <path d="M 118,37 L 102,23 L 109,22 L 126,37.5 Z" fill="#aa8620" opacity="0.9" />
-                            <path d="M 118,43 L 102,57 L 109,58 L 126,42.5 Z" fill="#aa8620" opacity="0.9" />
+                            <ellipse cx="97" cy="28" rx="11" ry="4" fill="#aa8620" opacity="0.92" />
+                            <ellipse cx="97" cy="28" rx="8" ry="2.4" fill="#c9a92e" opacity="0.6" />
+                            <ellipse cx="97" cy="72" rx="11" ry="4" fill="#aa8620" opacity="0.92" />
+                            <ellipse cx="97" cy="72" rx="8" ry="2.4" fill="#c9a92e" opacity="0.6" />
+                            <!-- Horizontal tailplanes -->
+                            <path d="M163,45 L184,29 L190,31 L170,47 Z" fill="#aa8620" opacity="0.9" />
+                            <path d="M163,55 L184,71 L190,69 L170,53 Z" fill="#aa8620" opacity="0.9" />
                             <!-- Vertical fin -->
-                            <path d="M 122,40 L 114,26 L 119,25 L 130,40 Z" fill="#b8982a" opacity="0.8" />
+                            <path d="M170,44 L190,18 L195,21 L177,46 Z" fill="#b8982a" opacity="0.9" />
                             <!-- Cockpit windows -->
-                            <ellipse cx="22" cy="39" rx="5" ry="1.8" fill="#fcf9f2" opacity="0.45" />
-                            <ellipse cx="22" cy="41" rx="4" ry="1.4" fill="#fcf9f2" opacity="0.25" />
+                            <ellipse cx="24" cy="48" rx="7" ry="2.2" fill="#fcf9f2" opacity="0.45" />
+                            <ellipse cx="24" cy="51.5" rx="6" ry="1.8" fill="#fcf9f2" opacity="0.25" />
                             <!-- Engine exhaust nozzle dots -->
-                            <circle cx="136" cy="38" r="2" fill="#f5d773" opacity="0.8" />
-                            <circle cx="136" cy="42" r="2" fill="#f5d773" opacity="0.8" />
+                            <circle cx="186" cy="48" r="2.2" fill="#f5d773" opacity="0.85" />
+                            <circle cx="186" cy="52" r="2.2" fill="#f5d773" opacity="0.85" />
                         </svg>
                     </div>
                 </div>
@@ -132,18 +132,17 @@
                 </svg>
                 <div class="hero-aircraft hero-aircraft-sm">
                     <div class="hero-aircraft-inner">
-                        <svg viewBox="0 0 160 80" xmlns="http://www.w3.org/2000/svg" width="150" height="75">
-                            <ellipse cx="132" cy="40" rx="16" ry="5" fill="url(#engine-glow-f)" />
-                            <path d="M 14,36 Q 28,33 85,35 Q 118,36.5 138,40 Q 118,43.5 85,45 Q 28,47 14,44 Z"
+                        <svg viewBox="0 0 200 100" xmlns="http://www.w3.org/2000/svg" width="150" height="75">
+                            <ellipse cx="183" cy="50" rx="18" ry="6" fill="url(#engine-glow-f)" />
+                            <path d="M10,50 C14,43 30,39 58,39 C102,38 142,40 176,46 C183,47.5 187,49 190,50 C187,51 183,52.5 176,54 C142,60 102,62 58,61 C30,61 14,57 10,50 Z"
                                 fill="#D4AF37" />
-                            <path d="M 7,40 Q 10,36 14,36 L 14,44 Q 10,44 7,40 Z" fill="#f5d773" />
-                            <path d="M 56,35.5 L 20,6  L 34,4  L 68,36 Z" fill="#c9a92e" opacity="0.9" />
-                            <path d="M 56,44.5 L 20,74 L 34,76 L 68,44 Z" fill="#c9a92e" opacity="0.9" />
-                            <ellipse cx="40" cy="18" rx="12" ry="3" fill="#aa8620" opacity="0.88" />
-                            <ellipse cx="40" cy="62" rx="12" ry="3" fill="#aa8620" opacity="0.88" />
-                            <path d="M 118,37 L 102,23 L 109,22 L 126,37.5 Z" fill="#aa8620" opacity="0.88" />
-                            <path d="M 118,43 L 102,57 L 109,58 L 126,42.5 Z" fill="#aa8620" opacity="0.88" />
-                            <path d="M 122,40 L 114,26 L 119,25 L 130,40 Z" fill="#b8982a" opacity="0.75" />
+                            <path d="M76,41 L118,12 L126,15 L110,44 Z" fill="#c9a92e" opacity="0.9" />
+                            <path d="M76,59 L118,88 L126,85 L110,56 Z" fill="#c9a92e" opacity="0.9" />
+                            <ellipse cx="97" cy="28" rx="10" ry="3.5" fill="#aa8620" opacity="0.88" />
+                            <ellipse cx="97" cy="72" rx="10" ry="3.5" fill="#aa8620" opacity="0.88" />
+                            <path d="M163,45 L184,29 L190,31 L170,47 Z" fill="#aa8620" opacity="0.88" />
+                            <path d="M163,55 L184,71 L190,69 L170,53 Z" fill="#aa8620" opacity="0.88" />
+                            <path d="M170,44 L190,18 L195,21 L177,46 Z" fill="#b8982a" opacity="0.8" />
                         </svg>
                     </div>
                 </div>

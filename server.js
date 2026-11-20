@@ -3,18 +3,27 @@ const path = require("path");
 const express = require("express");
 const helmet = require("helmet");
 const rateLimit = require("express-rate-limit");
+const argon2 = require("argon2");
 
 const {
   insertSubmission,
   listSubmissions,
   getSubmissionById,
   updateSubmission,
-  listSubmissionsForExport
+  listSubmissionsForExport,
+  listAdminUsers,
+  countAdminUsers,
+  createAdminUser,
+  updateAdminUser,
+  deleteAdminUser,
+  getAdminByEmail
 } = require("./backend/db");
 const {
   parseBookingSubmission,
   parseContactSubmission,
-  parseAdminUpdate
+  parseAdminUpdate,
+  parseAdminUserCreate,
+  parseAdminUserUpdate
 } = require("./backend/validate");
 const { notifyNewSubmission } = require("./backend/notify");
 const {
@@ -278,6 +287,99 @@ app.patch("/api/admin/submissions/:id", requireAdmin, requireCsrf, (req, res) =>
   }
 
   return res.json({ ok: true, row: updated });
+});
+
+function serializeAdminUser(row) {
+  return {
+    id: row.id,
+    email: row.email,
+    created_at: row.created_at,
+    last_login_at: row.last_login_at
+  };
+}
+
+app.get("/api/admin/users", requireAdmin, (_req, res) => {
+  const rows = listAdminUsers().map(serializeAdminUser);
+  return res.json({ ok: true, rows });
+});
+
+app.post("/api/admin/users", requireAdmin, requireCsrf, async (req, res) => {
+  const parsed = parseAdminUserCreate(req.body || {});
+  if (!parsed.ok) {
+    return res.status(400).json({ ok: false, errors: parsed.errors });
+  }
+
+  const existing = getAdminByEmail(parsed.data.email);
+  if (existing) {
+    return res.status(409).json({ ok: false, errors: { email: "An admin with this email already exists." } });
+  }
+
+  try {
+    const passwordHash = await argon2.hash(parsed.data.password);
+    const created = createAdminUser({ email: parsed.data.email, passwordHash });
+    return res.status(201).json({ ok: true, row: serializeAdminUser(created) });
+  } catch (err) {
+    console.error("admin user create failed", err);
+    return res.status(500).json({ ok: false, errors: { form: "Failed to create admin user." } });
+  }
+});
+
+app.patch("/api/admin/users/:id", requireAdmin, requireCsrf, async (req, res) => {
+  const id = Number(req.params.id);
+  if (!Number.isInteger(id) || id < 1) {
+    return res.status(400).json({ ok: false, errors: { form: "Invalid id." } });
+  }
+
+  const parsed = parseAdminUserUpdate(req.body || {});
+  if (!parsed.ok) {
+    return res.status(400).json({ ok: false, errors: parsed.errors });
+  }
+
+  if (parsed.data.email) {
+    const existing = getAdminByEmail(parsed.data.email);
+    if (existing && existing.id !== id) {
+      return res.status(409).json({ ok: false, errors: { email: "An admin with this email already exists." } });
+    }
+  }
+
+  try {
+    const patch = { email: parsed.data.email };
+    if (parsed.data.password) {
+      patch.passwordHash = await argon2.hash(parsed.data.password);
+    }
+
+    const updated = updateAdminUser(id, patch);
+    if (!updated) {
+      return res.status(404).json({ ok: false, errors: { form: "Admin user not found." } });
+    }
+
+    return res.json({ ok: true, row: serializeAdminUser(updated) });
+  } catch (err) {
+    console.error("admin user update failed", err);
+    return res.status(500).json({ ok: false, errors: { form: "Failed to update admin user." } });
+  }
+});
+
+app.delete("/api/admin/users/:id", requireAdmin, requireCsrf, (req, res) => {
+  const id = Number(req.params.id);
+  if (!Number.isInteger(id) || id < 1) {
+    return res.status(400).json({ ok: false, error: "Invalid id." });
+  }
+
+  if (req.session.adminUserId === id) {
+    return res.status(400).json({ ok: false, error: "You cannot delete your own account." });
+  }
+
+  if (countAdminUsers() <= 1) {
+    return res.status(400).json({ ok: false, error: "At least one admin user must remain." });
+  }
+
+  const deleted = deleteAdminUser(id);
+  if (!deleted) {
+    return res.status(404).json({ ok: false, error: "Admin user not found." });
+  }
+
+  return res.json({ ok: true });
 });
 
 app.listen(port, () => {

@@ -730,15 +730,15 @@ h1, h2, h3, h4, .kicker {
 
 /* ─── Hero Flying Aircraft ──────────────────────────────── */
 
-/* Wrapper sweeps from right edge to beyond left edge, following a subtle arc via translateY */
+/* Wrapper sweeps from left edge to beyond right edge, following a subtle arc via translateY */
 @keyframes aircraft-fly {
-  0%   { transform: translateX(110vw) translateY(0px);   opacity: 0; }
+  0%   { transform: translateX(-20vw) translateY(0px);   opacity: 0; }
   4%   { opacity: 1; }
-  30%  { transform: translateX(70vw)  translateY(-28px); }
-  55%  { transform: translateX(40vw)  translateY(-10px); }
-  80%  { transform: translateX(10vw)  translateY(-32px); }
+  30%  { transform: translateX(10vw)  translateY(-28px); }
+  55%  { transform: translateX(45vw)  translateY(-10px); }
+  80%  { transform: translateX(80vw)  translateY(-32px); }
   96%  { opacity: 1; }
-  100% { transform: translateX(-20vw) translateY(-18px); opacity: 0; }
+  100% { transform: translateX(115vw) translateY(-18px); opacity: 0; }
 }
 
 /* The aircraft itself bobs gently as it "flies" */
@@ -773,7 +773,7 @@ h1, h2, h3, h4, .kicker {
 
 .hero-aircraft {
   position: absolute;
-  right: 0;
+  left: 0;
   top: 50%;
   transform: translateY(-50%);
   width: 200px;
@@ -783,7 +783,7 @@ h1, h2, h3, h4, .kicker {
   will-change: transform;
 }
 
-/* Flips the SVG so the nose points in the direction of travel (left) */
+/* Flips the SVG so the nose points in the direction of travel (right) */
 .hero-aircraft-inner {
   width: 100%;
   height: 100%;
@@ -801,13 +801,13 @@ h1, h2, h3, h4, .kicker {
 
 .hero-contrail {
   position: absolute;
-  /* Contrail trails behind (to the right of) the aircraft */
-  left: calc(100% - 10px);
+  /* Contrail trails behind (to the left of) the aircraft */
+  right: calc(100% - 10px);
   top: 50%;
   transform: translateY(-50%);
   width: 300px;
   height: 40px;
-  transform-origin: left center;
+  transform-origin: right center;
   animation: contrail-fade 18s cubic-bezier(0.4, 0, 0.3, 1) infinite;
   animation-delay: 2s;
   will-change: opacity, transform;

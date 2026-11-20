@@ -39,5 +39,11 @@
     "nodemailer": "^8.0.1",
     "playwright": "^1.58.2",
     "zod": "^4.3.6"
+  },
+  "allowScripts": {
+    "argon2@0.44.0": true,
+    "better-sqlite3@12.6.2": true,
+    "fsevents@2.3.2": true,
+    "sqlite3@5.1.7": true
   }
 }

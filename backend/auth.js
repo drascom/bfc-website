@@ -38,7 +38,7 @@ function ensureCsrfToken(req) {
 }
 
 function requireCsrf(req, res, next) {
-  const incoming = req.header("x-csrf-token") || req.body.csrf_token;
+  const incoming = req.header("x-csrf-token") || req.body?.csrf_token;
   const current = req.session?.csrfToken;
   if (!current || !incoming || incoming !== current) {
     return res.status(403).json({ ok: false, error: "Invalid CSRF token." });
